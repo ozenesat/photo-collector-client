@@ -9,6 +9,7 @@ import SignIn from '../Auth/SignIn'
 import SignOut from '../Auth/SignOut'
 import ChangePassword from '../Auth/ChangePassword'
 import Photos from '../Photos/PhotosIndex'
+import Search from '../Photos/Search'
 
 class App extends Component {
   constructor () {
@@ -48,6 +49,9 @@ class App extends Component {
           )} />
           <Route path='/sign-in' render={() => (
             <SignIn msgAlert={this.msgAlert} setUser={this.setUser} />
+          )} />
+          <AuthenticatedRoute user={user} path='/search' render={() => (
+            <Search msgAlert={this.msgAlert} user={user} />
           )} />
           <AuthenticatedRoute user={user} path='/photos' render={() => (
             <Photos msgAlert={this.msgAlert} user={user} />
