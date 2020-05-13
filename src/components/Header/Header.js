@@ -39,7 +39,7 @@ const Header = ({ user }) => (
       <Nav className="ml-auto">
         { alwaysOptions }
         { user ? authenticatedOptions : unauthenticatedOptions }
-        { user && <span className="navbar-text mr-2">Welcome, {user.email}</span>}
+        { user && <span style={{ color: 'rgba(94,195,200,1)' }} className="navbar-text mr-2">Welcome, {user.email}</span>}
       </Nav>
     </Navbar.Collapse>
   </Navbar>
