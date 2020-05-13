@@ -5,7 +5,7 @@ import Button from 'react-bootstrap/Button'
 
 const SearchResults = ({ title, photoId, photoUrl, photographer, portfolio }) => (
   <div>
-    <Card style={{ width: '20rem' }}>
+    <Card style={{ width: '55%', margin: 'auto' }}>
       <Card.Img variant="top" src={photoUrl} />
       <Card.Body>
         <Card.Text>

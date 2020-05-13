@@ -10,7 +10,14 @@ import apiUrl from '../../apiConfig'
 const Search = props => {
   const [keyword, setKeyword] = useState('')
   const [photo, setPhoto] = useState('')
+  const [searchResult, setSearchResult] = useState([])
 
+  const handleChange = event => {
+    event.persist()
+    setKeyword(event.target.value)
+  }
+
+  // Get photos from unsplash with a keyword which is entered by user
   const handleSubmit = event => {
     event.preventDefault()
     axios({
@@ -19,17 +26,25 @@ const Search = props => {
       params: { keyword }
     })
       .then(res => {
-        setPhoto(res.data)
+        setSearchResult(res.data.photos.results)
         setKeyword('')
+        setPhoto('')
       })
       .catch(console.error)
   }
+  // console.log(searchResult, ' XXX')
+  const photosJsx = searchResult.map(photo => (
+    <SearchResults
+      key={photo.id}
+      title={photo.alt_description}
+      photoId={photo.id}
+      photoUrl= {photo.urls.regular}
+      photographer={photo.user.name}
+      portfolio={photo.user.links.html}
+    />
+  ))
 
-  const handleChange = event => {
-    event.persist()
-    setKeyword(event.target.value)
-  }
-
+  // get a random photo from unsplash
   const handleClick = event => {
     event.preventDefault()
     axios({
@@ -37,19 +52,19 @@ const Search = props => {
       method: 'GET'
     })
       .then(res => {
-        console.log(res.data.photos[0])
         setPhoto(res.data.photos[0])
+        setSearchResult([])
       })
       .catch(console.error)
   }
 
   const photoJsx = (
     <Fragment>
-      <h1>Search Photos</h1>
-      <Form onSubmit={handleSubmit} className="text-align-center">
+      <h1 style={{ textAlign: 'center' }}>Search Photos</h1>
+      <Form style={{ textAlign: 'center' }} onSubmit={handleSubmit}>
         <Form.Group size="lg" controlId="keyword">
-          <Form.Label>Keyword</Form.Label>
-          <Form.Control type="text" name="query" placeholder="Enter a Keyword"
+          <Form.Label>What would you like to collect today?</Form.Label>
+          <Form.Control style={{ textAlign: 'center' }} type="text" name="keyword" placeholder="Keyword"
             onChange={handleChange}/>
         </Form.Group>
         <Button variant="outline-primary" type="submit">
@@ -59,6 +74,7 @@ const Search = props => {
         <Button variant="outline-primary" type="click" onClick={handleClick}>
         Get Random
         </Button>
+        <hr />
       </Form>
     </Fragment>
   )
@@ -77,6 +93,13 @@ const Search = props => {
         />
       </div>
 
+    )
+  } if (searchResult) {
+    return (
+      <div className="align-items-center">
+        {photoJsx}
+        {photosJsx}
+      </div>
     )
   } else {
     return (
