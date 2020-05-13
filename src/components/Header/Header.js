@@ -1,13 +1,16 @@
 import React, { Fragment } from 'react'
 import Nav from 'react-bootstrap/Nav'
 import Navbar from 'react-bootstrap/Navbar'
+import NavDropdown from 'react-bootstrap/NavDropdown'
 
 const authenticatedOptions = (
   <Fragment>
     <Nav.Link href="#photos">My Photo Collection</Nav.Link>
     <Nav.Link href="#search">Search Photos</Nav.Link>
-    <Nav.Link href="#change-password">Change Password</Nav.Link>
-    <Nav.Link href="#sign-out">Sign Out</Nav.Link>
+    <NavDropdown title="Authorization" id="nav-dropdown">
+      <Nav.Link href="#change-password">Change Password</Nav.Link>
+      <Nav.Link href="#sign-out">Sign Out</Nav.Link>
+    </NavDropdown>
   </Fragment>
 )
 
@@ -25,16 +28,18 @@ const alwaysOptions = (
 )
 
 const Header = ({ user }) => (
-  <Navbar bg="primary" variant="dark" expand="md">
+  <Navbar style={{ background: 'linear-gradient(90deg, rgba(211,231,238,1) 1%, rgba(94,195,200,1) 50%, rgba(211,231,238,1) 100%)',
+    fontWeight: 'bold',
+    fontFamily: 'Arial' }} expand="md">
     <Navbar.Brand href="#">
-      react-auth-template
+      Photo Collector
     </Navbar.Brand>
     <Navbar.Toggle aria-controls="basic-navbar-nav" />
     <Navbar.Collapse id="basic-navbar-nav">
       <Nav className="ml-auto">
-        { user && <span className="navbar-text mr-2">Welcome, {user.email}</span>}
         { alwaysOptions }
         { user ? authenticatedOptions : unauthenticatedOptions }
+        { user && <span className="navbar-text mr-2">Welcome, {user.email}</span>}
       </Nav>
     </Navbar.Collapse>
   </Navbar>
