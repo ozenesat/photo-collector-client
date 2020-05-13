@@ -1,9 +1,42 @@
-import React from 'react'
+import React, { useState } from 'react'
 import Card from 'react-bootstrap/Card'
 import Button from 'react-bootstrap/Button'
 import Form from 'react-bootstrap/Form'
+import axios from 'axios'
+import apiUrl from '../../apiConfig'
 
-const Photo = ({ title, photoId, photoUrl }) => {
+const Photo = ({ title, photoId, photoUrl, photographer, portfolio, user }) => {
+  const [submitted, setSubmitted] = useState(false)
+  const [userReview, setUserReview] = useState({ rating: '', comment: '' })
+  const handleChange = event => {
+    event.persist()
+    setUserReview(review => ({ ...userReview, [event.target.name]: event.target.value }))
+  }
+  const handleSubmit = (event) => {
+    event.preventDefault()
+    axios({
+      url: `${apiUrl}/photos`,
+      method: 'POST',
+      headers: {
+        'Authorization': `Token token=${user.token}`
+      },
+      data: {
+        photo: {
+          rating: userReview.rating,
+          comment: userReview.comment,
+          photoUrl,
+          photographer,
+          portfolio,
+          title,
+          photoId
+        }
+      }
+    })
+      .then(res => console.log('submitted!', res))
+      .then(setSubmitted(true))
+      .catch(console.error)
+  }
+
   // const [photo, setPhoto] = useState(null)
   const photoJsx = (
     <Card style={{ width: '55%', margin: 'auto' }}>
@@ -12,32 +45,56 @@ const Photo = ({ title, photoId, photoUrl }) => {
         <Card.Text>
           {title}
           <hr />
-          <Form>
-            <Form.Group controlId="rating">
-              <Form.Label>Rating</Form.Label>
-              <Form.Control as="select">
-                <option>⭐</option>
-                <option>⭐⭐</option>
-                <option>⭐⭐⭐</option>
-                <option>⭐⭐⭐⭐</option>
-                <option>⭐⭐⭐⭐🌟</option>
-              </Form.Control>
-            </Form.Group>
-            <Form.Group controlId="comment">
-              <Form.Label>Comments</Form.Label>
-              <Form.Control as="comment" rows="3" />
-            </Form.Group>
-          </Form>
-          <Button variant="outline-success" type="submit">Submit</Button>
-          {'  '}
-          <Button variant="outline-warning">
-              Delete
-          </Button>
+          <div>
+            <Form onSubmit={handleSubmit}>
+              <Form.Group controlId="rating">
+                <Form.Label>Rating</Form.Label>
+                <Form.Control required as="select" name="rating" onChange={handleChange} value={userReview.rating}>
+                  <option> </option>
+                  <option>🌟</option>
+                  <option>⭐🌟</option>
+                  <option>⭐⭐🌟</option>
+                  <option>⭐⭐⭐🌟</option>
+                  <option>⭐⭐⭐⭐🌟</option>
+                </Form.Control>
+              </Form.Group>
+              <Form.Group controlId="comment">
+                <Form.Label>Comments</Form.Label>
+                <Form.Control required as="textarea" rows="3" name="comment" onChange={handleChange} value={userReview.comment}/>
+              </Form.Group>
+              <Button variant="outline-success" type="submit">Add to My Photo Collection!</Button>
+            </Form>
+          </div>
         </Card.Text>
       </Card.Body>
     </Card>
   )
 
+  const collectedPhotoJsx = (
+    <Card style={{ width: '55%', margin: 'auto' }}>
+      <Card.Img variant="bottom" src={photoUrl} />
+      <Card.Body>
+        <Card.Text>
+          {title}
+          <hr />
+          <a href={portfolio} rel="noreferrer noopener" target="_blank">
+            By {photographer}
+          </a>
+        </Card.Text>
+        <Button variant="outline-warning" >Edit</Button>
+        {'  '}
+        <Button variant="outline-danger">
+          Delete
+        </Button>
+      </Card.Body>
+    </Card>
+  )
+
+  if (submitted) {
+    return (
+      collectedPhotoJsx
+    )
+  }
   return (
     photoJsx
   )

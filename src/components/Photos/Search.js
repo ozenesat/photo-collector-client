@@ -11,6 +11,7 @@ const Search = props => {
   const [keyword, setKeyword] = useState('')
   const [photo, setPhoto] = useState('')
   const [searchResult, setSearchResult] = useState([])
+  const user = props.user
 
   const handleChange = event => {
     event.persist()
@@ -41,6 +42,7 @@ const Search = props => {
       photoUrl= {photo.urls.regular}
       photographer={photo.user.name}
       portfolio={photo.user.links.html}
+      user={user}
     />
   ))
 
@@ -90,6 +92,7 @@ const Search = props => {
           photoUrl= {photo.urls.regular}
           photographer={photo.user.name}
           portfolio={photo.user.links.html}
+          user={user}
         />
       </div>
 

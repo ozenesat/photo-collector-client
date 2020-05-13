@@ -16,12 +16,10 @@ const Photos = props => {
       }
     })
       .then(res => {
-        // console.log(res)
         setPhotos(res.data.photos)
       })
       .catch(console.error)
   }, [])
-
   const photoJsx = (
     <div>
       <h1>My Photo Collection</h1>

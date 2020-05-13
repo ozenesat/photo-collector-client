@@ -1,10 +1,10 @@
-import React, { useState } from 'react'
+import React, { Fragment, useState } from 'react'
 import Card from 'react-bootstrap/Card'
 import Button from 'react-bootstrap/Button'
 import Photo from './PhotoShow'
 // import { Link } from 'react-router-dom'
 
-const SearchResults = ({ title, photoId, photoUrl, photographer, portfolio }) => {
+const SearchResults = ({ title, photoId, photoUrl, photographer, portfolio, user }) => {
   const [collected, setCollected] = useState(false)
 
   const handleClick = event => {
@@ -12,16 +12,21 @@ const SearchResults = ({ title, photoId, photoUrl, photographer, portfolio }) =>
     setCollected(true)
   }
   const photoJsx = (
-    <Photo
-      key={photoId}
-      title={title}
-      photoId={photoId}
-      photoUrl= {photoUrl}
-    />
+    <Fragment>
+      <Photo
+        key={photoId}
+        title={title}
+        photoId={photoId}
+        photoUrl= {photoUrl}
+        photographer= {photographer}
+        portfolio= {portfolio}
+        user= {user}
+      />
+    </Fragment>
   )
 
   const resultJsx = (
-    <div>
+    <Fragment>
       <Card style={{ width: '55%', margin: 'auto' }}>
         <Card.Img variant="top" src={photoUrl} />
         <Card.Body>
@@ -32,17 +37,14 @@ const SearchResults = ({ title, photoId, photoUrl, photographer, portfolio }) =>
               By {photographer}
             </a>
           </Card.Text>
-          <Button variant="outline-primary" onClick={handleClick}
-            title={title}
-            photoId={photoId}
-            photoUrl= {photoUrl}>Collect it!</Button>
+          <Button variant="outline-primary" onClick={handleClick}>Collect it!</Button>
           {'  '}
           <Button rel="noreferrer noopener" target="_blank" href={photoUrl} variant="outline-success">
             Discover it!
           </Button>
         </Card.Body>
       </Card>
-    </div>
+    </Fragment>
   )
   if (collected) {
     return (
