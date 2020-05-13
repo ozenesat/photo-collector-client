@@ -3,7 +3,6 @@ import { Link } from 'react-router-dom'
 import axios from 'axios'
 
 import apiUrl from '../../apiConfig'
-// import Layout from '../Shared/Layout'
 
 const Photos = props => {
   const [photos, setPhotos] = useState([])

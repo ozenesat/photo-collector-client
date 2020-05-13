@@ -1,7 +1,7 @@
 import React, { Fragment, useState } from 'react'
 import Card from 'react-bootstrap/Card'
 import Button from 'react-bootstrap/Button'
-import Photo from './PhotoShow'
+import PhotoForm from './PhotoForm'
 // import { Link } from 'react-router-dom'
 
 const SearchResults = ({ title, photoId, photoUrl, photographer, portfolio, user }) => {
@@ -13,7 +13,7 @@ const SearchResults = ({ title, photoId, photoUrl, photographer, portfolio, user
   }
   const photoJsx = (
     <Fragment>
-      <Photo
+      <PhotoForm
         key={photoId}
         title={title}
         photoId={photoId}
