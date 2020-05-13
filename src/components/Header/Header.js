@@ -30,8 +30,8 @@ const alwaysOptions = (
 const Header = ({ user }) => (
   <Navbar style={{ background: 'linear-gradient(90deg, rgba(211,231,238,1) 1%, rgba(94,195,200,1) 50%, rgba(211,231,238,1) 100%)',
     fontWeight: 'bold',
-    fontFamily: 'Arial' }} expand="md">
-    <Navbar.Brand href="#">
+    fontFamily: 'Permanent Marker, cursive' }} expand="md">
+    <Navbar.Brand className="icon-camera" href="#">
       Photo Collector
     </Navbar.Brand>
     <Navbar.Toggle aria-controls="basic-navbar-nav" />
