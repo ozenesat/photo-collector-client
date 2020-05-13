@@ -88,7 +88,7 @@ class SignUp extends Component {
               />
             </Form.Group>
             <Button
-              variant="primary"
+              variant="outline-info"
               type="submit"
             >
               Submit
