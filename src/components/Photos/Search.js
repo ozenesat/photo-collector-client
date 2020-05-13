@@ -67,11 +67,11 @@ const Search = props => {
           <Form.Control style={{ textAlign: 'center' }} type="text" name="keyword" placeholder="Keyword"
             onChange={handleChange}/>
         </Form.Group>
-        <Button variant="outline-primary" type="submit">
+        <Button variant="outline-info" type="submit">
           Search
         </Button>
         {'  '}
-        <Button variant="outline-primary" type="click" onClick={handleClick}>
+        <Button variant="outline-info" type="click" onClick={handleClick}>
         Get Random
         </Button>
         <hr />
