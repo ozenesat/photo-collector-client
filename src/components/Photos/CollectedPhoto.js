@@ -1,0 +1,56 @@
+import React, { useState } from 'react'
+import { withRouter } from 'react-router'
+import Card from 'react-bootstrap/Card'
+import Col from 'react-bootstrap/Col'
+import Button from 'react-bootstrap/Button'
+import { Redirect, Link } from 'react-router-dom'
+import axios from 'axios'
+import apiUrl from '../../apiConfig'
+
+const CollectedPhoto = ({ title, photoId, photoUrl, photographer, portfolio, rating, comment, user, id }) => {
+  const [deleted, setDeleted] = useState(false)
+  const destroy = () => {
+    axios({
+      url: `${apiUrl}/photos/${id}`,
+      method: 'DELETE',
+      headers: {
+        'Authorization': `Token token=${user.token}`
+      }
+    })
+      .then(() => setDeleted(true))
+      .catch(console.error)
+  }
+  const returnJsx = (
+    <Card style={{ width: '65%', margin: 'auto', textAlign: 'center' }}>
+      <a rel="noreferrer noopener" target="_blank" href={photoUrl}>
+        <Card.Img src={photoUrl}/> </a>
+      <Card.Body>
+        <Col lg="12" className="text-center">
+          <h3>{title}</h3>
+          <a href={portfolio} rel="noreferrer noopener" target="_blank">
+            By {photographer}
+          </a>
+          <hr />
+          <h3> {comment} </h3>
+          <h4> {rating} </h4>
+        </Col>
+        <Link to={`/photos/${id}/edit`}>
+          <Button className="icon-pencil"variant="outline-warning"> {''}Edit </Button>
+        </Link>
+        {' '}
+        <Button className="icon-close" variant="outline-danger" onClick={destroy}> {' '} Delete </Button>
+      </Card.Body>
+    </Card>
+  )
+  if (deleted) {
+    return <Redirect to={
+      { pathname: '/photos' }
+    } />
+  }
+
+  return (
+    returnJsx
+  )
+}
+
+export default withRouter(CollectedPhoto)

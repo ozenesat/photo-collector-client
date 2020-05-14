@@ -1,46 +1,43 @@
-import React from 'react'
-import Card from 'react-bootstrap/Card'
-import Button from 'react-bootstrap/Button'
-import Form from 'react-bootstrap/Form'
+import React, { useEffect, useState } from 'react'
+import axios from 'axios'
+import apiUrl from '../../apiConfig'
+import { withRouter } from 'react-router'
+import CollectedPhoto from './CollectedPhoto'
 
-const Photo = ({ title, photoId, photoUrl }) => {
-  // const [photo, setPhoto] = useState(null)
-  const photoJsx = (
-    <Card style={{ width: '55%', margin: 'auto' }}>
-      <Card.Img variant="bottom" src={photoUrl} />
-      <Card.Body>
-        <Card.Text>
-          {title}
-          <hr />
-          <Form>
-            <Form.Group controlId="rating">
-              <Form.Label>Rating</Form.Label>
-              <Form.Control as="select">
-                <option>⭐</option>
-                <option>⭐⭐</option>
-                <option>⭐⭐⭐</option>
-                <option>⭐⭐⭐⭐</option>
-                <option>⭐⭐⭐⭐🌟</option>
-              </Form.Control>
-            </Form.Group>
-            <Form.Group controlId="comment">
-              <Form.Label>Comments</Form.Label>
-              <Form.Control as="comment" rows="3" />
-            </Form.Group>
-          </Form>
-          <Button variant="outline-success" type="submit">Submit</Button>
-          {'  '}
-          <Button variant="outline-warning">
-              Delete
-          </Button>
-        </Card.Text>
-      </Card.Body>
-    </Card>
-  )
+const ShowPhoto = (props) => {
+  // console.log(props)
+  const [photo, setPhoto] = useState(null)
+  const user = props.user
+  useEffect(() => {
+    axios({
+      url: `${apiUrl}/photos/${props.match.params.id}`,
+      method: 'GET',
+      headers: {
+        'Authorization': `Token token=${user.token}`
+      }
+    })
+      .then(res => setPhoto(res.data.photo))
+      .catch(console.error)
+  }, [])
+
+  if (!photo) {
+    return <p>Loading...</p>
+  }
 
   return (
-    photoJsx
+    <CollectedPhoto
+      key={photo.photoId}
+      title={photo.title}
+      photoId={photo.photoId}
+      photoUrl= {photo.photoUrl}
+      photographer= {photo.photographer}
+      portfolio= {photo.portfolio}
+      rating= {photo.rating}
+      comment= {photo.comment}
+      id={photo._id}
+      user= {user}
+    />
   )
 }
 
-export default Photo
+export default withRouter(ShowPhoto)
