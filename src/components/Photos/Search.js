@@ -3,9 +3,7 @@ import axios from 'axios'
 import Form from 'react-bootstrap/Form'
 import Button from 'react-bootstrap/Button'
 import SearchResults from './SearchResults'
-
 import apiUrl from '../../apiConfig'
-// import Layout from '../Shared/Layout'
 
 const Search = props => {
   const [keyword, setKeyword] = useState('')

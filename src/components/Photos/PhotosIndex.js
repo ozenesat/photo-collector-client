@@ -18,7 +18,7 @@ const Photos = props => {
 
   const handleSubmit = event => {
     event.preventDefault()
-    console.log(keyword)
+    // console.log(keyword)
     setPhotos(photos.filter(photo => photo.title.includes(keyword)))
     setKeyword('')
   }

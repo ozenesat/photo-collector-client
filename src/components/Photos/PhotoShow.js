@@ -5,7 +5,7 @@ import { withRouter } from 'react-router'
 import CollectedPhoto from './CollectedPhoto'
 
 const ShowPhoto = (props) => {
-  console.log(props)
+  // console.log(props)
   const [photo, setPhoto] = useState(null)
   const user = props.user
   useEffect(() => {

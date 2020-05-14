@@ -1,15 +1,36 @@
-import React, { Fragment, useState } from 'react'
+import React, { useState, useEffect } from 'react'
+import { withRouter } from 'react-router'
+import { Redirect } from 'react-router-dom'
 import Card from 'react-bootstrap/Card'
 import Button from 'react-bootstrap/Button'
 import Col from 'react-bootstrap/Col'
 import Form from 'react-bootstrap/Form'
 import axios from 'axios'
 import apiUrl from '../../apiConfig'
-import CollectedPhoto from './CollectedPhoto'
 
-const PhotoForm = ({ title, photoId, photoUrl, photographer, portfolio, user }) => {
-  const [submitted, setSubmitted] = useState(false)
+const PhotoUpdate = (props) => {
+  const [photo, setPhoto] = useState(null)
   const [userReview, setUserReview] = useState({ rating: '', comment: '' })
+  const [submitted, setSubmitted] = useState(false)
+
+  // Bring the photo and datas about it
+  const user = props.user
+  useEffect(() => {
+    axios({
+      url: `${apiUrl}/photos/${props.match.params.id}`,
+      method: 'GET',
+      headers: {
+        'Authorization': `Token token=${user.token}`
+      }
+    })
+      .then(res => {
+        setPhoto(res.data.photo)
+        setUserReview({ rating: res.data.photo.rating, comment: res.data.photo.comment })
+      })
+      .catch(console.error)
+  }, [])
+
+  // Update the rating and comment with new entries
   const handleChange = event => {
     event.persist()
     setUserReview(review => ({ ...userReview, [event.target.name]: event.target.value }))
@@ -17,34 +38,38 @@ const PhotoForm = ({ title, photoId, photoUrl, photographer, portfolio, user }) 
   const handleSubmit = (event) => {
     event.preventDefault()
     axios({
-      url: `${apiUrl}/photos`,
-      method: 'POST',
+      url: `${apiUrl}/photos/${props.match.params.id}`,
+      method: 'PATCH',
       headers: {
-        'Authorization': `Token token=${user.token}`
+        'Authorization': `Token token=${props.user.token}`
       },
       data: {
         photo: {
           rating: userReview.rating,
-          comment: userReview.comment,
-          photoUrl,
-          photographer,
-          portfolio,
-          title,
-          photoId
+          comment: userReview.comment
         }
       }
     })
       .then(setSubmitted(true))
       .catch(console.error)
   }
+  if (!photo) {
+    return (
+      <p>Loading...</p>
+    )
+  }
 
-  // const [photo, setPhoto] = useState(null)
-  const photoJsx = (
-    <Card style={{ width: '65%', margin: 'auto' }}>
-      <Card.Img variant="bottom" src={photoUrl} />
+  if (submitted) {
+    return (
+      <Redirect to={'/photos'}/>
+    )
+  }
+  return (
+    <Card style={{ width: '65%', margin: 'auto', textAlign: 'center' }}>
+      <Card.Img variant="bottom" src={photo.photoUrl} />
       <Card.Body>
         <Col lg="12" className="text-center">
-          {title}
+          {photo.title}
           <hr />
           <Form onSubmit={handleSubmit}>
             <Form.Group controlId="rating">
@@ -62,39 +87,12 @@ const PhotoForm = ({ title, photoId, photoUrl, photographer, portfolio, user }) 
               <Form.Label>Comments</Form.Label>
               <Form.Control as="textarea" rows="3" name="comment" onChange={handleChange} value={userReview.comment}/>
             </Form.Group>
-            <Button variant="outline-success" type="submit">Add to My Photo Collection!</Button>
+            <Button variant="outline-success" type="submit">Submit!</Button>
           </Form>
         </Col>
       </Card.Body>
     </Card>
   )
-
-  const collectedPhotoJsx = (
-    <CollectedPhoto
-      key={photoId}
-      title={title}
-      photoId={photoId}
-      photoUrl= {photoUrl}
-      photographer= {photographer}
-      portfolio= {portfolio}
-      rating= {userReview.rating}
-      comment= {userReview.comment}
-      user= {user}
-    />
-  )
-
-  if (submitted) {
-    return (
-      <Fragment>
-        {collectedPhotoJsx}
-      </Fragment>
-    )
-  }
-  return (
-    <Fragment>
-      {photoJsx}
-    </Fragment>
-  )
 }
 
-export default PhotoForm
+export default withRouter(PhotoUpdate)
