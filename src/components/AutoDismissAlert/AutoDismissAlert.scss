@@ -9,6 +9,7 @@
   position: fixed;
   right: 0;
   z-index: 10000;
+  opacity: 0.75;
 
   .alert-body {
     margin-bottom: 0;
@@ -33,7 +34,7 @@
   }
 
   100% {
-    opacity: 1;
+    opacity: .77;
     transform: translateY(0%);
   }
 }

@@ -6,9 +6,10 @@ import Button from 'react-bootstrap/Button'
 import { Redirect, Link } from 'react-router-dom'
 import axios from 'axios'
 import apiUrl from '../../apiConfig'
-
+import AutoDismissAlert from '../AutoDismissAlert/AutoDismissAlert'
 const CollectedPhoto = ({ title, photoId, photoUrl, photographer, portfolio, rating, comment, user, id }) => {
   const [deleted, setDeleted] = useState(false)
+
   const destroy = () => {
     axios({
       url: `${apiUrl}/photos/${id}`,
@@ -18,8 +19,9 @@ const CollectedPhoto = ({ title, photoId, photoUrl, photographer, portfolio, rat
       }
     })
       .then(() => setDeleted(true))
-      .catch(console.error)
+      .catch(console.err)
   }
+
   const returnJsx = (
     <Card style={{ width: '65%', margin: 'auto', textAlign: 'center' }}>
       <a rel="noreferrer noopener" target="_blank" href={photoUrl}>
@@ -43,9 +45,19 @@ const CollectedPhoto = ({ title, photoId, photoUrl, photographer, portfolio, rat
     </Card>
   )
   if (deleted) {
-    return <Redirect to={
-      { pathname: '/photos' }
-    } />
+    return (
+      <div>
+        <AutoDismissAlert
+          key= '1'
+          heading='Successfully'
+          message='Photo deleted from your list!'
+          variant='success'
+        />
+        <Redirect to={
+          { pathname: '/photos' }
+        } />
+      </div>
+    )
   }
 
   return (

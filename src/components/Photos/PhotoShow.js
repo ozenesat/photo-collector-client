@@ -8,6 +8,7 @@ const ShowPhoto = (props) => {
   // console.log(props)
   const [photo, setPhoto] = useState(null)
   const user = props.user
+  const msgAlert = props.msgAlert
   useEffect(() => {
     axios({
       url: `${apiUrl}/photos/${props.match.params.id}`,
@@ -17,7 +18,18 @@ const ShowPhoto = (props) => {
       }
     })
       .then(res => setPhoto(res.data.photo))
-      .catch(console.error)
+      .then(() => msgAlert({
+        heading: 'Successfully',
+        message: 'Photo listed',
+        variant: 'success'
+      }))
+      .catch(error => {
+        msgAlert({
+          heading: 'Failed on listing',
+          message: error.message,
+          variant: 'danger'
+        })
+      })
   }, [])
 
   if (!photo) {

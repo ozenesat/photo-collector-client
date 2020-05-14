@@ -7,6 +7,7 @@ import axios from 'axios'
 import apiUrl from '../../apiConfig'
 // import CollectedPhoto from './CollectedPhoto'
 import { Link } from 'react-router-dom'
+import AutoDismissAlert from '../AutoDismissAlert/AutoDismissAlert'
 
 const PhotoForm = ({ title, photoId, photoUrl, photographer, portfolio, user }) => {
   const [submitted, setSubmitted] = useState(false)
@@ -94,7 +95,15 @@ const PhotoForm = ({ title, photoId, photoUrl, photographer, portfolio, user }) 
 
   if (submitted) {
     return (
-      collectedPhotoJsx
+      <div>
+        <AutoDismissAlert
+          key= '1'
+          heading='Successfully'
+          message='Photo added to your collection!'
+          variant='success'
+        />
+        {collectedPhotoJsx}
+      </div>
     )
   }
   return (
