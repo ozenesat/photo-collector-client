@@ -1,6 +1,7 @@
 import React, { Fragment, useState, useEffect } from 'react'
-// import { Link } from 'react-router-dom'
-// import Form from 'react-bootstrap/Form'
+import { Link } from 'react-router-dom'
+import Form from 'react-bootstrap/Form'
+import Button from 'react-bootstrap/Button'
 import axios from 'axios'
 import apiUrl from '../../apiConfig'
 import { withRouter } from 'react-router'
@@ -8,6 +9,20 @@ import CollectedPhoto from './CollectedPhoto'
 
 const Photos = props => {
   const [photos, setPhotos] = useState([])
+  const [keyword, setKeyword] = useState('')
+
+  const handleChange = event => {
+    event.persist()
+    setKeyword(event.target.value)
+  }
+
+  const handleSubmit = event => {
+    event.preventDefault()
+    console.log(keyword)
+    setPhotos(photos.filter(photo => photo.title.includes(keyword)))
+    setKeyword('')
+  }
+
   useEffect((user) => {
     axios({
       url: `${apiUrl}/photos`,
@@ -37,8 +52,14 @@ const Photos = props => {
   //     </ul>
   //   </div>
   // )
+  // console.log(photos, 'PHOTO')
   const photosJsx = photos.map(photo => (
     <Fragment key={photo.photoId}>
+      <Link to={`/photos/${photo._id}`} key={photo._id}>
+        <h3 style={{ textAlign: 'center' }}>
+          ~
+        </h3>
+      </Link>
       <CollectedPhoto
         title={photo.title}
         photoId={photo.photoId}
@@ -48,6 +69,7 @@ const Photos = props => {
         rating= {photo.rating}
         comment= {photo.comment}
         user={user}
+        id={photo._id}
       />
     </Fragment>
   ))
@@ -55,6 +77,15 @@ const Photos = props => {
   return (
     <div>
       <h1 style={{ textAlign: 'center', fontWeight: 'bold', fontFamily: 'Permanent Marker, cursive' }}>My Photos</h1>
+      <Form style={{ textAlign: 'center' }} onSubmit={handleSubmit}>
+        <Form.Group size="lg" controlId="keyword">
+          <Form.Control style={{ textAlign: 'center' }} type="text" name="keyword" placeholder="Enter the Photo Title"
+            onChange={handleChange}/>
+        </Form.Group>
+        <Button variant="outline-info" type="submit">
+          Search
+        </Button>
+      </Form>
       {photosJsx}
     </div>
   )

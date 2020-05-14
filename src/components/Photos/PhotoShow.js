@@ -34,6 +34,7 @@ const ShowPhoto = (props) => {
       portfolio= {photo.portfolio}
       rating= {photo.rating}
       comment= {photo.comment}
+      id={photo._id}
       user= {user}
     />
   )
