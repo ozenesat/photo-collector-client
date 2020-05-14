@@ -5,7 +5,8 @@ import Col from 'react-bootstrap/Col'
 import Form from 'react-bootstrap/Form'
 import axios from 'axios'
 import apiUrl from '../../apiConfig'
-import CollectedPhoto from './CollectedPhoto'
+// import CollectedPhoto from './CollectedPhoto'
+import { Link } from 'react-router-dom'
 
 const PhotoForm = ({ title, photoId, photoUrl, photographer, portfolio, user }) => {
   const [submitted, setSubmitted] = useState(false)
@@ -35,6 +36,7 @@ const PhotoForm = ({ title, photoId, photoUrl, photographer, portfolio, user }) 
       }
     })
       .then(setSubmitted(true))
+      .then(() => history.push('/'))
       .catch(console.error)
   }
 
@@ -70,24 +72,29 @@ const PhotoForm = ({ title, photoId, photoUrl, photographer, portfolio, user }) 
   )
 
   const collectedPhotoJsx = (
-    <CollectedPhoto
-      key={photoId}
-      title={title}
-      photoId={photoId}
-      photoUrl= {photoUrl}
-      photographer= {photographer}
-      portfolio= {portfolio}
-      rating= {userReview.rating}
-      comment= {userReview.comment}
-      user= {user}
-    />
+    <Card style={{ width: '65%', margin: 'auto', textAlign: 'center' }}>
+      <a rel="noreferrer noopener" target="_blank" href={photoUrl}>
+        <Card.Img src={photoUrl}/> </a>
+      <Card.Body>
+        <Col lg="12" className="text-center">
+          <h3>{title}</h3>
+          <a href={portfolio} rel="noreferrer noopener" target="_blank">
+            By {photographer}
+          </a>
+          <hr />
+          <h3> {userReview.comment} </h3>
+          <h4> {userReview.rating} </h4>
+        </Col>
+        <Link to={'/photos'}>
+          <Button variant="outline-success"> {''}My Photo Collection </Button>
+        </Link>
+      </Card.Body>
+    </Card>
   )
 
   if (submitted) {
     return (
-      <Fragment>
-        {collectedPhotoJsx}
-      </Fragment>
+      collectedPhotoJsx
     )
   }
   return (
