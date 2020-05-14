@@ -27,7 +27,7 @@ const SearchResults = ({ title, photoId, photoUrl, photographer, portfolio, user
 
   const resultJsx = (
     <Fragment>
-      <Card style={{ width: '55%', margin: 'auto' }}>
+      <Card style={{ width: '75%', margin: 'auto' }}>
         <Card.Img variant="top" src={photoUrl} />
         <Card.Body>
           <Card.Text>

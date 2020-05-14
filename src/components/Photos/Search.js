@@ -60,12 +60,11 @@ const Search = props => {
       .catch(console.error)
   }
 
-  const photoJsx = (
+  const searchJsx = (
     <Fragment>
-      <h1 style={{ textAlign: 'center' }}>Search Photos</h1>
+      <h3 style={{ textAlign: 'center', fontFamily: 'Permanent Marker, cursive' }}>What would you like to search today?</h3>
       <Form style={{ textAlign: 'center' }} onSubmit={handleSubmit}>
         <Form.Group size="lg" controlId="keyword">
-          <Form.Label>What would you like to collect today?</Form.Label>
           <Form.Control style={{ textAlign: 'center' }} type="text" name="keyword" placeholder="Keyword"
             onChange={handleChange}/>
         </Form.Group>
@@ -84,7 +83,7 @@ const Search = props => {
   if (photo) {
     return (
       <div>
-        {photoJsx}
+        {searchJsx}
         <SearchResults
           key={photo.id}
           title={photo.alt_description}
@@ -100,13 +99,13 @@ const Search = props => {
   } if (searchResult) {
     return (
       <div className="align-items-center">
-        {photoJsx}
+        {searchJsx}
         {photosJsx}
       </div>
     )
   } else {
     return (
-      photoJsx
+      searchJsx
     )
   }
 }

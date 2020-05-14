@@ -40,7 +40,7 @@ const PhotoForm = ({ title, photoId, photoUrl, photographer, portfolio, user }) 
 
   // const [photo, setPhoto] = useState(null)
   const photoJsx = (
-    <Card style={{ width: '55%', margin: 'auto' }}>
+    <Card style={{ width: '65%', margin: 'auto' }}>
       <Card.Img variant="bottom" src={photoUrl} />
       <Card.Body>
         <Card.Text>
@@ -60,7 +60,7 @@ const PhotoForm = ({ title, photoId, photoUrl, photographer, portfolio, user }) 
             </Form.Group>
             <Form.Group controlId="comment">
               <Form.Label>Comments</Form.Label>
-              <Form.Control required as="textarea" rows="3" name="comment" onChange={handleChange} value={userReview.comment}/>
+              <Form.Control as="textarea" rows="3" name="comment" onChange={handleChange} value={userReview.comment}/>
             </Form.Group>
             <Button variant="outline-success" type="submit">Add to My Photo Collection!</Button>
           </Form>
@@ -77,6 +77,8 @@ const PhotoForm = ({ title, photoId, photoUrl, photographer, portfolio, user }) 
       photoUrl= {photoUrl}
       photographer= {photographer}
       portfolio= {portfolio}
+      rating= {userReview.rating}
+      comment= {userReview.comment}
       user= {user}
     />
   )

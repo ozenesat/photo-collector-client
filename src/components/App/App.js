@@ -8,8 +8,9 @@ import SignUp from '../Auth/SignUp'
 import SignIn from '../Auth/SignIn'
 import SignOut from '../Auth/SignOut'
 import ChangePassword from '../Auth/ChangePassword'
-import Photos from '../Photos/PhotosIndex'
 import Search from '../Photos/Search'
+import Photos from '../Photos/PhotosIndex'
+import PhotoShow from '../Photos/PhotoShow'
 
 class App extends Component {
   constructor () {
@@ -53,8 +54,11 @@ class App extends Component {
           <AuthenticatedRoute user={user} path='/search' render={() => (
             <Search msgAlert={this.msgAlert} user={user} />
           )} />
-          <AuthenticatedRoute user={user} path='/photos' render={() => (
+          <AuthenticatedRoute user={user} exact path='/photos' render={() => (
             <Photos msgAlert={this.msgAlert} user={user} />
+          )} />
+          <Route user={user} exact path='/photos/:id' render={() => (
+            <PhotoShow msgAlert={this.msgAlert} user={user} />
           )} />
           <AuthenticatedRoute user={user} path='/change-password' render={() => (
             <ChangePassword msgAlert={this.msgAlert} user={user} />
