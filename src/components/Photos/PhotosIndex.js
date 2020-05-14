@@ -10,7 +10,7 @@ import CollectedPhoto from './CollectedPhoto'
 const Photos = props => {
   const [photos, setPhotos] = useState([])
   const [keyword, setKeyword] = useState('')
-
+  const msgAlert = props.msgAlert
   const handleChange = event => {
     event.persist()
     setKeyword(event.target.value)
@@ -34,25 +34,22 @@ const Photos = props => {
       .then(res => {
         setPhotos(res.data.photos)
       })
-      .catch(console.error)
+      .then(() => msgAlert({
+        heading: 'Successfully',
+        message: 'Photos are listed',
+        variant: 'success'
+      }))
+      .catch(error => {
+        setKeyword('')
+        msgAlert({
+          heading: 'Failed on listing',
+          message: error.message,
+          variant: 'danger'
+        })
+      })
   }, [])
   const user = props.user
 
-  // const photosJsx = (
-  //   <div>
-  //     <h1>My Photo Collection</h1>
-  //     <ul>
-  //       {photos.map(photo => (
-  //         <Link to={`/photos/${photo._id}`} key={photo._id}>
-  //           <li key={photo._id}>
-  //             {photo.title}
-  //           </li>
-  //         </Link>
-  //       ))}
-  //     </ul>
-  //   </div>
-  // )
-  // console.log(photos, 'PHOTO')
   const photosJsx = photos.map(photo => (
     <Fragment key={photo.photoId}>
       <Link to={`/photos/${photo._id}`} key={photo._id}>

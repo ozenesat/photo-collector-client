@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import { withRouter } from 'react-router'
-import { Redirect } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 import Card from 'react-bootstrap/Card'
 import Button from 'react-bootstrap/Button'
 import Col from 'react-bootstrap/Col'
@@ -12,7 +12,7 @@ const PhotoUpdate = (props) => {
   const [photo, setPhoto] = useState(null)
   const [userReview, setUserReview] = useState({ rating: '', comment: '' })
   const [submitted, setSubmitted] = useState(false)
-
+  const msgAlert = props.msgAlert
   // Bring the photo and datas about it
   const user = props.user
   useEffect(() => {
@@ -51,8 +51,43 @@ const PhotoUpdate = (props) => {
       }
     })
       .then(setSubmitted(true))
-      .catch(console.error)
+      .then(() => msgAlert({
+        heading: 'Successfully',
+        message: 'Collection is updated!',
+        variant: 'success'
+      }))
+      .catch(error => {
+        msgAlert({
+          heading: 'Error on update',
+          message: error.message,
+          variant: 'danger'
+        })
+      })
   }
+  let collectedPhotoJsx
+  if (photo) {
+    collectedPhotoJsx = (
+      <Card style={{ width: '65%', margin: 'auto', textAlign: 'center' }}>
+        <a rel="noreferrer noopener" target="_blank" href={photo.photoUrl}>
+          <Card.Img src={photo.photoUrl}/> </a>
+        <Card.Body>
+          <Col lg="12" className="text-center">
+            <h3>{photo.title}</h3>
+            <a href={photo.portfolio} rel="noreferrer noopener" target="_blank">
+            By {photo.photographer}
+            </a>
+            <hr />
+            <h3> {userReview.comment} </h3>
+            <h4> {userReview.rating} </h4>
+          </Col>
+          <Link to={'/photos'}>
+            <Button variant="outline-success"> {''}My Photo Collection </Button>
+          </Link>
+        </Card.Body>
+      </Card>
+    )
+  }
+
   if (!photo) {
     return (
       <p>Loading...</p>
@@ -61,7 +96,7 @@ const PhotoUpdate = (props) => {
 
   if (submitted) {
     return (
-      <Redirect to={'/photos'}/>
+      collectedPhotoJsx
     )
   }
   return (

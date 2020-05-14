@@ -10,6 +10,7 @@ const Search = props => {
   const [photo, setPhoto] = useState('')
   const [searchResult, setSearchResult] = useState([])
   const user = props.user
+  const msgAlert = props.msgAlert
 
   const handleChange = event => {
     event.persist()
@@ -29,7 +30,19 @@ const Search = props => {
         setKeyword('')
         setPhoto('')
       })
-      .catch(console.error)
+      .then(() => msgAlert({
+        heading: 'Successfully',
+        message: 'Results are listed',
+        variant: 'success'
+      }))
+      .catch(error => {
+        setKeyword('')
+        msgAlert({
+          heading: 'Search Failed',
+          message: error.message,
+          variant: 'danger'
+        })
+      })
   }
   // console.log(searchResult, ' XXX')
   const photosJsx = searchResult.map(photo => (
@@ -55,7 +68,19 @@ const Search = props => {
         setPhoto(res.data.photos[0])
         setSearchResult([])
       })
-      .catch(console.error)
+      .then(() => msgAlert({
+        heading: 'Request Success',
+        message: 'Random photo is showed',
+        variant: 'success'
+      }))
+      .catch(error => {
+        setKeyword('')
+        msgAlert({
+          heading: 'Search Failed',
+          message: error.message,
+          variant: 'danger'
+        })
+      })
   }
 
   const searchJsx = (

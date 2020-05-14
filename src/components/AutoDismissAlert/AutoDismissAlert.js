@@ -15,7 +15,7 @@ class AutoDismissAlert extends React.Component {
   componentDidMount () {
     this.timer = setInterval(() => {
       this.setState({ show: false })
-    }, 5000)
+    }, 3333)
   }
 
   componentWillUnmount () {
@@ -32,6 +32,7 @@ class AutoDismissAlert extends React.Component {
         show={this.state.show}
         variant={variant}
         onClose={this.handleClose}
+        style = {{ margin: '0' }}
       >
         <div className="container">
           <Alert.Heading>
