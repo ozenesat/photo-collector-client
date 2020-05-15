@@ -16,7 +16,7 @@ const authenticatedOptions = (
 )
 
 const unauthenticatedOptions = (
-  <Fragment>
+  <Fragment >
     <Nav.Link href="#home">Home</Nav.Link>
     <Nav.Link href="#sign-up">Sign Up</Nav.Link>
     <Nav.Link href="#sign-in">Sign In</Nav.Link>
@@ -24,20 +24,22 @@ const unauthenticatedOptions = (
 )
 
 const Header = ({ user }) => (
-  <Navbar style={{ background: 'linear-gradient(90deg, rgba(211,231,238,1) 1%, rgba(94,195,200,1) 50%, rgba(211,231,238,1) 100%)',
-    fontWeight: 'bold',
-    fontFamily: 'Permanent Marker, cursive' }} expand="md">
-    <Navbar.Brand href="#home">
+  <div>
+    <Navbar style={{ background: 'linear-gradient(90deg, rgba(36,58,111,0.35) 3%, rgba(36,58,111,0.87) 50%, rgba(36,58,111,0.35) 97%)',
+      fontWeight: 'bold',
+      fontFamily: 'Permanent Marker, cursive' }} expand="md">
+      <Navbar.Brand href="#welcome">
       📸 Photo Collector
-    </Navbar.Brand>
-    <Navbar.Toggle aria-controls="basic-navbar-nav" />
-    <Navbar.Collapse id="basic-navbar-nav">
-      <Nav className="ml-auto">
-        { user ? authenticatedOptions : unauthenticatedOptions }
-        { user && <span style={{ color: 'rgba(94,195,200,1)' }} className="navbar-text mr-2">Welcome, {user.email}</span>}
-      </Nav>
-    </Navbar.Collapse>
-  </Navbar>
+      </Navbar.Brand>
+      <Navbar.Toggle aria-controls="basic-navbar-nav" />
+      <Navbar.Collapse id="basic-navbar-nav">
+        <Nav className="ml-auto">
+          { user ? authenticatedOptions : unauthenticatedOptions }
+          { user && <span style={{ color: 'rgba(36,58,111,0.77)' }} className="navbar-text mr-2">Welcome, {user.email}</span>}
+        </Nav>
+      </Navbar.Collapse>
+    </Navbar>
+  </div>
 )
 
 export default Header
