@@ -22,39 +22,48 @@ const Home = () => {
   console.log(photos, 'P')
   if (contoroller) {
     const photosJsx = (
-      <Carousel style={{ display: 'flex', justifyContent: 'center', objectFit: 'contain' }}>
+      <Carousel>
         <Carousel.Item>
           <img
+            style={{ objectFit: 'cover',
+              backgroundPosition: 'center',
+              height: '100vh' }}
             className="d-block w-100"
-            src={`${photos[0].urls.regular}&w=1500&dpr=2`}
+            src={photos[0].urls.regular}
             alt="First slide"
           />
-          <Carousel.Caption>
-            <h3>First slide label</h3>
-            <p>Nulla vitae elit libero, a pharetra augue mollis interdum.</p>
+          <Carousel.Caption style={{ background: 'linear-gradient(0deg, rgba(36,58,111,0.5) 0%, rgba(36,58,111,0.77) 50%, rgba(36,58,111,0.5) 100%)' }}>
+            <h3>A Photo by {photos[0].user.name}. Sign in to add it in your collection</h3>
+            <p>{photos[0].alt_description}</p>
           </Carousel.Caption>
         </Carousel.Item>
         <Carousel.Item>
           <img
+            style={{ objectFit: 'cover',
+              backgroundPosition: 'center',
+              height: '100vh' }}
             className="d-block w-100"
-            src={photos[1].urls.raw + '&w=1500&dpr=2'}
+            src={photos[1].urls.regular}
             alt="Second slide"
           />
-          <Carousel.Caption>
-            <h3>Second slide label</h3>
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+          <Carousel.Caption style={{ background: 'linear-gradient(0deg, rgba(36,58,111,0.5) 0%, rgba(36,58,111,0.77) 50%, rgba(36,58,111,0.5) 100%)' }}>
+            <h3>A Photo by {photos[1].user.name}. Sign in to add it in your collection</h3>
+            <p>{photos[1].alt_description}</p>
           </Carousel.Caption>
         </Carousel.Item>
         <Carousel.Item>
           <img
+            style={{ objectFit: 'cover',
+              backgroundPosition: 'center',
+              height: '100vh' }}
             className="d-block w-100"
-            src={`${photos[2].urls.regular}&w=1500&dpr=2`}
+            src={photos[2].urls.regular}
             alt="Third slide"
           />
 
-          <Carousel.Caption>
-            <h3>Third slide label</h3>
-            <p>Praesent commodo cursus magna, vel scelerisque nisl consectetur.</p>
+          <Carousel.Caption style={{ background: 'linear-gradient(0deg, rgba(36,58,111,0.5) 0%, rgba(36,58,111,0.77) 50%, rgba(36,58,111,0.5) 100%)' }}>
+            <h3>A Photo by {photos[2].user.name}. Sign in to add it in your collection</h3>
+            <p>{photos[2].alt_description}</p>
           </Carousel.Caption>
         </Carousel.Item>
       </Carousel>
@@ -68,7 +77,6 @@ const Home = () => {
     <div>
       <h1> Welcome to Photo Collector</h1>
       <p>Loading...</p>
-      {console.log(photos, 'PPP')}
     </div>
   )
 }
