@@ -11,17 +11,21 @@ const Photos = props => {
   const [photos, setPhotos] = useState([])
   const [keyword, setKeyword] = useState('')
   const msgAlert = props.msgAlert
+
+  // Update the keyword for search in my photo collection page
   const handleChange = event => {
     event.persist()
     setKeyword(event.target.value)
   }
 
+  // Bring the results of search in my photo collection page
   const handleSubmit = event => {
     event.preventDefault()
     setPhotos(photos.filter(photo => photo.title.includes(keyword)))
     setKeyword('')
   }
 
+  // Retrieve all collected photos
   useEffect((user) => {
     axios({
       url: `${apiUrl}/photos`,
@@ -47,6 +51,8 @@ const Photos = props => {
         })
       })
   }, [])
+
+  // Show only the signed-in user's collected photos
   const user = props.user
   const id = user._id
   let userPhotos

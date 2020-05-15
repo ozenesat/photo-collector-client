@@ -5,10 +5,11 @@ import { withRouter } from 'react-router'
 import CollectedPhoto from './CollectedPhoto'
 
 const ShowPhoto = (props) => {
-  // console.log(props)
   const [photo, setPhoto] = useState(null)
   const user = props.user
   const msgAlert = props.msgAlert
+
+  // Retrieve requested photo
   useEffect(() => {
     axios({
       url: `${apiUrl}/photos/${props.match.params.id}`,
@@ -32,10 +33,12 @@ const ShowPhoto = (props) => {
       })
   }, [])
 
+  // If photo is not loaded yet just run `loading`
   if (!photo) {
     return <p>Loading...</p>
   }
 
+  // Return the requested photo with form box
   return (
     <CollectedPhoto
       key={photo.photoId}

@@ -8,10 +8,13 @@ import PhotoForm from './PhotoForm'
 const SearchResults = ({ title, photoId, photoUrl, photographer, portfolio, user }) => {
   const [collected, setCollected] = useState(false)
 
+  // Update the collection status of photo with user's input
   const handleClick = event => {
     event.preventDefault()
     setCollected(true)
   }
+
+  // Send the photo into review form when user choose to collect it
   const photoJsx = (
     <Fragment>
       <PhotoForm
@@ -26,6 +29,7 @@ const SearchResults = ({ title, photoId, photoUrl, photographer, portfolio, user
     </Fragment>
   )
 
+  // Search results in boxes
   const resultJsx = (
     <Fragment>
       <Card style={{ width: '75%', margin: 'auto', textAlign: 'center' }}>
@@ -47,6 +51,8 @@ const SearchResults = ({ title, photoId, photoUrl, photographer, portfolio, user
       </Card>
     </Fragment>
   )
+
+  // if user would like to collect photo, returns photo review form
   if (collected) {
     return (
       photoJsx

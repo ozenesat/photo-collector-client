@@ -13,7 +13,7 @@ const PhotoUpdate = (props) => {
   const [userReview, setUserReview] = useState({ rating: '', comment: '' })
   const [submitted, setSubmitted] = useState(false)
   const msgAlert = props.msgAlert
-  // Bring the photo and datas about it
+  // Bring the selected photo and user review to update it
   const user = props.user
   useEffect(() => {
     axios({
@@ -30,11 +30,13 @@ const PhotoUpdate = (props) => {
       .catch(console.error)
   }, [])
 
-  // Update the rating and comment with new entries
+  // Update the rating and comment with user's input
   const handleChange = event => {
     event.persist()
     setUserReview(review => ({ ...userReview, [event.target.name]: event.target.value }))
   }
+
+  //  Update user's review of photo at photo collection
   const handleSubmit = (event) => {
     event.preventDefault()
     axios({
@@ -64,6 +66,8 @@ const PhotoUpdate = (props) => {
         })
       })
   }
+
+  // Update photo review box with the updated review and a return botton to photo collection
   let collectedPhotoJsx
   if (photo) {
     collectedPhotoJsx = (
@@ -88,12 +92,14 @@ const PhotoUpdate = (props) => {
     )
   }
 
+  // if the requested photo is not loaded yet just run `loading`
   if (!photo) {
     return (
       <p>Loading...</p>
     )
   }
 
+  // After user submit updated reviews just return the photo with updated info
   if (submitted) {
     return (
       collectedPhotoJsx

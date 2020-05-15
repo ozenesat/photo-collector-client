@@ -12,6 +12,7 @@ const Search = props => {
   const user = props.user
   const msgAlert = props.msgAlert
 
+  // update the keyword with user's input
   const handleChange = event => {
     event.persist()
     setKeyword(event.target.value)
@@ -44,7 +45,8 @@ const Search = props => {
         })
       })
   }
-  // console.log(searchResult, ' XXX')
+
+  // Shows the result of search
   const photosJsx = searchResult.map(photo => (
     <SearchResults
       key={photo.id}
@@ -83,6 +85,7 @@ const Search = props => {
       })
   }
 
+  // Search Bar
   const searchJsx = (
     <Fragment>
       <h3 style={{ textAlign: 'center', fontFamily: 'Permanent Marker, cursive' }}>What would you like to search today?</h3>
@@ -103,6 +106,7 @@ const Search = props => {
     </Fragment>
   )
 
+  // Returns the photo from random search with search bar after random photo requested
   if (photo) {
     return (
       <div>
@@ -121,6 +125,7 @@ const Search = props => {
     )
   }
 
+  // Returns the search results with search bar after search requested
   if (searchResult) {
     return (
       <div className="align-items-center">

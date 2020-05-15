@@ -12,10 +12,12 @@ import AutoDismissAlert from '../AutoDismissAlert/AutoDismissAlert'
 const PhotoForm = ({ title, photoId, photoUrl, photographer, portfolio, user }) => {
   const [submitted, setSubmitted] = useState(false)
   const [userReview, setUserReview] = useState({ rating: '', comment: '' })
+
   const handleChange = event => {
     event.persist()
     setUserReview(review => ({ ...userReview, [event.target.name]: event.target.value }))
   }
+
   const handleSubmit = (event) => {
     event.preventDefault()
     axios({
@@ -41,7 +43,6 @@ const PhotoForm = ({ title, photoId, photoUrl, photographer, portfolio, user }) 
       .catch(console.error)
   }
 
-  // const [photo, setPhoto] = useState(null)
   const photoJsx = (
     <Card style={{ width: '65%', margin: 'auto' }}>
       <Card.Img variant="bottom" src={photoUrl} />

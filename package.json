@@ -1,6 +1,6 @@
 {
   "name": "project4-client",
-  "homepage": "https://ozenesat.github.io/photo-collector-client",
+  "homepage": "https://ozenesat.github.io/photo-collector-client/#/welcome",
   "version": "0.1.0",
   "private": true,
   "dependencies": {

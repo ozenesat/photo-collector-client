@@ -1,6 +1,7 @@
 import React from 'react'
 import Card from 'react-bootstrap/Card'
 
+// I should welcome my guests, shouldn't I?
 const Welcome = () => {
   return (
     <Card className="bg-dark text-white">

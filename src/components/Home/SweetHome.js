@@ -4,6 +4,7 @@ import axios from 'axios'
 import apiUrl from '../../apiConfig'
 import PhotoForm from '../Photos/PhotoForm'
 
+// Home page for signed-in users with random photos which they can collect
 const Home = (props) => {
   const [photos, setPhotos] = useState(null)
   const [contoroller, setController] = useState(false)
