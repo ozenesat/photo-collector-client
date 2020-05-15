@@ -88,7 +88,7 @@ const Search = props => {
       <h3 style={{ textAlign: 'center', fontFamily: 'Permanent Marker, cursive' }}>What would you like to search today?</h3>
       <Form style={{ textAlign: 'center' }} onSubmit={handleSubmit}>
         <Form.Group size="lg" controlId="keyword">
-          <Form.Control style={{ textAlign: 'center' }} type="text" name="keyword" placeholder="Keyword"
+          <Form.Control style={{ textAlign: 'center' }} type="text" name="keyword" placeholder="Keyword" value={keyword}
             onChange={handleChange}/>
         </Form.Group>
         <Button variant="outline-info" type="submit">

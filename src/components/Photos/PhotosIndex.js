@@ -77,7 +77,7 @@ const Photos = props => {
         <h1 style={{ textAlign: 'center', fontWeight: 'bold', fontFamily: 'Permanent Marker, cursive' }}>My Photos</h1>
         <Form style={{ textAlign: 'center' }} onSubmit={handleSubmit}>
           <Form.Group size="lg" controlId="keyword">
-            <Form.Control style={{ textAlign: 'center' }} type="text" name="keyword" placeholder="Enter any word from the photo title"
+            <Form.Control style={{ textAlign: 'center' }} type="text" name="keyword" value={keyword} placeholder="Enter any word from the photo title"
               onChange={handleChange}/>
           </Form.Group>
           <Button variant="outline-info" type="submit">
