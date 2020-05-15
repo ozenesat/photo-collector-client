@@ -18,7 +18,6 @@ const Photos = props => {
 
   const handleSubmit = event => {
     event.preventDefault()
-    // console.log(keyword)
     setPhotos(photos.filter(photo => photo.title.includes(keyword)))
     setKeyword('')
   }
@@ -49,43 +48,46 @@ const Photos = props => {
       })
   }, [])
   const user = props.user
-
-  const photosJsx = photos.map(photo => (
-    <Fragment key={photo.photoId}>
-      <Link to={`/photos/${photo._id}`} key={photo._id}>
-        <h3 style={{ textAlign: 'center' }}>
-          ~
-        </h3>
-      </Link>
-      <CollectedPhoto
-        title={photo.title}
-        photoId={photo.photoId}
-        photoUrl= {photo.photoUrl}
-        photographer={photo.photographer}
-        portfolio={photo.portfolio}
-        rating= {photo.rating}
-        comment= {photo.comment}
-        user={user}
-        id={photo._id}
-      />
-    </Fragment>
-  ))
-
-  return (
-    <div>
-      <h1 style={{ textAlign: 'center', fontWeight: 'bold', fontFamily: 'Permanent Marker, cursive' }}>My Photos</h1>
-      <Form style={{ textAlign: 'center' }} onSubmit={handleSubmit}>
-        <Form.Group size="lg" controlId="keyword">
-          <Form.Control style={{ textAlign: 'center' }} type="text" name="keyword" placeholder="Enter the Photo Title"
-            onChange={handleChange}/>
-        </Form.Group>
-        <Button variant="outline-info" type="submit">
-          Search
-        </Button>
-      </Form>
-      {photosJsx}
-    </div>
-  )
+  const id = user._id
+  let userPhotos
+  if (photos) {
+    userPhotos = photos.filter(photo => photo.owner === id)
+    const photosJsx = userPhotos.map(photo => (
+      <Fragment key={photo.photoId}>
+        <Link to={`/photos/${photo._id}`} key={photo._id}>
+          <h3 style={{ textAlign: 'center' }}>
+            ~
+          </h3>
+        </Link>
+        <CollectedPhoto
+          title={photo.title}
+          photoId={photo.photoId}
+          photoUrl= {photo.photoUrl}
+          photographer={photo.photographer}
+          portfolio={photo.portfolio}
+          rating= {photo.rating}
+          comment= {photo.comment}
+          user={user}
+          id={photo._id}
+        />
+      </Fragment>
+    ))
+    return (
+      <div>
+        <h1 style={{ textAlign: 'center', fontWeight: 'bold', fontFamily: 'Permanent Marker, cursive' }}>My Photos</h1>
+        <Form style={{ textAlign: 'center' }} onSubmit={handleSubmit}>
+          <Form.Group size="lg" controlId="keyword">
+            <Form.Control style={{ textAlign: 'center' }} type="text" name="keyword" placeholder="Enter any word from the photo title"
+              onChange={handleChange}/>
+          </Form.Group>
+          <Button variant="outline-info" type="submit">
+            Search
+          </Button>
+        </Form>
+        {photosJsx}
+      </div>
+    )
+  }
 }
 
 export default withRouter(Photos)

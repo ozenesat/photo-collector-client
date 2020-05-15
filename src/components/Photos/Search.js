@@ -31,7 +31,7 @@ const Search = props => {
         setPhoto('')
       })
       .then(() => msgAlert({
-        heading: 'Successfully',
+        heading: 'Search Completed Successfully',
         message: 'Results are listed',
         variant: 'success'
       }))
@@ -119,18 +119,20 @@ const Search = props => {
       </div>
 
     )
-  } if (searchResult) {
+  }
+
+  if (searchResult) {
     return (
       <div className="align-items-center">
         {searchJsx}
         {photosJsx}
       </div>
     )
-  } else {
-    return (
-      searchJsx
-    )
   }
+
+  return (
+    searchJsx
+  )
 }
 
 export default Search
