@@ -89,13 +89,11 @@ const Home = (props) => {
     })
       .then(res => {
         setPhotos(res.data.photos)
-        console.log(res.data.photos[0], 'photos - 0')
         setController(true)
       })
       .catch(console.error)
   }
 
-  console.log(photos, 'P')
   if (contoroller) {
     const photosJsx = (
       <Carousel>
