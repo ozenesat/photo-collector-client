@@ -3,11 +3,14 @@ import axios from 'axios'
 import Form from 'react-bootstrap/Form'
 import Button from 'react-bootstrap/Button'
 import SearchResults from './SearchResults'
+import Collection from './Collection'
 import apiUrl from '../../apiConfig'
 
 const Search = props => {
   const [keyword, setKeyword] = useState('')
   const [photo, setPhoto] = useState('')
+  const [collection, setCollection] = useState('')
+  const [collectionPhotos, setCollectionPhotos] = useState([])
   const [searchResult, setSearchResult] = useState([])
   const user = props.user
   const msgAlert = props.msgAlert
@@ -16,6 +19,35 @@ const Search = props => {
   const handleChange = event => {
     event.persist()
     setKeyword(event.target.value)
+  }
+
+  // Get a collection from unsplash
+  const getCollection = event => {
+    event.preventDefault()
+    axios({
+      url: `${apiUrl}/collection`,
+      method: 'GET'
+    })
+      .then(res => {
+        console.log(res.data.photos[0])
+        setCollection(res.data.photos[0])
+        setCollectionPhotos(res.data.photos[0].preview_photos)
+        setKeyword('')
+        setPhoto('')
+        setSearchResult([])
+      })
+      .then(() => msgAlert({
+        heading: 'Collection Requested Successfully',
+        message: 'Results are listed',
+        variant: 'success'
+      }))
+      .catch(error => {
+        msgAlert({
+          heading: 'Request Failed',
+          message: error.message,
+          variant: 'danger'
+        })
+      })
   }
 
   // Get photos from unsplash with a keyword which is entered by user
@@ -30,6 +62,7 @@ const Search = props => {
         setSearchResult(res.data.photos.results)
         setKeyword('')
         setPhoto('')
+        setCollection('')
       })
       .then(() => msgAlert({
         heading: 'Search Completed Successfully',
@@ -69,6 +102,7 @@ const Search = props => {
       .then(res => {
         setPhoto(res.data.photos[0])
         setSearchResult([])
+        setCollection('')
       })
       .then(() => msgAlert({
         heading: 'Request Success',
@@ -101,6 +135,9 @@ const Search = props => {
         <Button variant="outline-info" type="click" onClick={handleClick}>
         Get Random
         </Button>
+        <Button variant="outline-info" type="click" onClick={getCollection}>
+        Get Collection
+        </Button>
         <hr />
       </Form>
     </Fragment>
@@ -125,6 +162,22 @@ const Search = props => {
     )
   }
 
+  if (collection) {
+    const collectionJsx = collectionPhotos.map(photo => (
+      <Collection
+        key={photo.urls.regular}
+        photoUrl= {photo.urls.regular}
+        title={collection.title}
+      />
+    ))
+    return (
+      <div className="align-items-center">
+        {searchJsx}
+        {collectionJsx}
+      </div>
+    )
+  }
+
   // Returns the search results with search bar after search requested
   if (searchResult) {
     return (
@@ -134,10 +187,6 @@ const Search = props => {
       </div>
     )
   }
-
-  return (
-    searchJsx
-  )
 }
 
 export default Search
