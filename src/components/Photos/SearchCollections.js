@@ -1,14 +1,15 @@
 import React, { Fragment, useState } from 'react'
-import axios from 'axios'
+
 import Form from 'react-bootstrap/Form'
 import Button from 'react-bootstrap/Button'
-import SearchResults from './SearchResults'
+import Collection from './Collection'
 import apiUrl from '../../apiConfig'
+import axios from 'axios'
 
-const Search = props => {
+const SearchCollections = props => {
   const [keyword, setKeyword] = useState('')
-  const [photo, setPhoto] = useState('')
-  const [searchResult, setSearchResult] = useState([])
+  const [collection, setCollection] = useState([])
+
   const user = props.user
   const msgAlert = props.msgAlert
 
@@ -18,18 +19,17 @@ const Search = props => {
     setKeyword(event.target.value)
   }
 
-  // Get photos from unsplash with a keyword which is entered by user
+  // Get collections from unsplash with a keyword which is entered by user
   const handleSubmit = event => {
     event.preventDefault()
     axios({
-      url: `${apiUrl}/search`,
+      url: `${apiUrl}/collections`,
       method: 'GET',
       params: { keyword }
     })
       .then(res => {
-        setSearchResult(res.data.photos.results)
+        setCollection(res.data.photos.results)
         setKeyword('')
-        setPhoto('')
       })
       .then(() => msgAlert({
         heading: 'Search Completed Successfully',
@@ -47,28 +47,28 @@ const Search = props => {
   }
 
   // Shows the result of search
-  const photosJsx = searchResult.map(photo => (
-    <SearchResults
-      key={photo.id}
-      title={photo.alt_description}
-      photoId={photo.id}
-      photoUrl= {photo.urls.regular}
-      photographer={photo.user.name}
-      portfolio={photo.user.links.html}
-      user={user}
+  const collectionsJsx = collection.map(collection => (
+    <Collection
+      key={collection.id}
+      description={collection.description}
+      collectionId={collection.id}
+      coverPhotoUrl= {collection.cover_photo.urls.regular}
+      title={collection.title}
+      collectionLink={collection.links.html}
+      photos={collection.preview_photos}
+      user = {user}
     />
   ))
 
-  // get a random photo from unsplash
+  // get a random collection from unsplash
   const handleClick = event => {
     event.preventDefault()
     axios({
-      url: `${apiUrl}/random`,
+      url: `${apiUrl}/collection`,
       method: 'GET'
     })
       .then(res => {
-        setPhoto(res.data.photos[0])
-        setSearchResult([])
+        setCollection(res.data.photos)
       })
       .then(() => msgAlert({
         heading: 'Request Success',
@@ -88,18 +88,18 @@ const Search = props => {
   // Search Bar
   const searchJsx = (
     <Fragment>
-      <h3 style={{ textAlign: 'center', fontFamily: 'Permanent Marker, cursive' }}>What would you like to search today?</h3>
+      <h3 style={{ textAlign: 'center', fontFamily: 'Permanent Marker, cursive' }}>Which collection would you like to discover today?</h3>
       <Form style={{ textAlign: 'center' }} onSubmit={handleSubmit}>
         <Form.Group size="lg" controlId="keyword">
           <Form.Control style={{ textAlign: 'center' }} type="text" name="keyword" placeholder="Keyword" value={keyword}
             onChange={handleChange}/>
         </Form.Group>
         <Button variant="outline-info" type="submit">
-          Search
+          Search Collection
         </Button>
         {'  '}
         <Button variant="outline-info" type="click" onClick={handleClick}>
-        Get Random
+          Featured Collections
         </Button>
         <hr />
       </Form>
@@ -107,33 +107,22 @@ const Search = props => {
   )
 
   // Returns the photo from random search with search bar after random photo requested
-  if (photo) {
+  if (collection) {
     return (
-      <div>
+      <div className="align-items-center">
         {searchJsx}
-        <SearchResults
-          key={photo.id}
-          title={photo.alt_description}
-          photoId={photo.id}
-          photoUrl= {photo.urls.regular}
-          photographer={photo.user.name}
-          portfolio={photo.user.links.html}
-          user={user}
-        />
+        {collectionsJsx}
       </div>
-
     )
   }
 
   // Returns the search results with search bar after search requested
-  if (searchResult) {
-    return (
-      <div className="align-items-center">
-        {searchJsx}
-        {photosJsx}
-      </div>
-    )
-  }
+
+  return (
+    <div className="align-items-center">
+      {searchJsx}
+    </div>
+  )
 }
 
-export default Search
+export default SearchCollections
