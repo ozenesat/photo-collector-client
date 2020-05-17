@@ -9,6 +9,7 @@ const Search = props => {
   const [keyword, setKeyword] = useState('')
   const [photo, setPhoto] = useState('')
   const [searchResult, setSearchResult] = useState([])
+  const [searched, setSearched] = useState(false)
   const user = props.user
   const msgAlert = props.msgAlert
 
@@ -28,6 +29,7 @@ const Search = props => {
     })
       .then(res => {
         setSearchResult(res.data.photos.results)
+        setSearched(true)
         setKeyword('')
         setPhoto('')
       })
@@ -55,6 +57,7 @@ const Search = props => {
       photoUrl= {photo.urls.regular}
       photographer={photo.user.name}
       portfolio={photo.user.links.html}
+      download={photo.links.download}
       user={user}
     />
   ))
@@ -69,6 +72,7 @@ const Search = props => {
       .then(res => {
         setPhoto(res.data.photos[0])
         setSearchResult([])
+        setSearched(false)
       })
       .then(() => msgAlert({
         heading: 'Request Success',
@@ -118,6 +122,7 @@ const Search = props => {
           photoUrl= {photo.urls.regular}
           photographer={photo.user.name}
           portfolio={photo.user.links.html}
+          download={photo.links.download}
           user={user}
         />
       </div>
@@ -126,14 +131,25 @@ const Search = props => {
   }
 
   // Returns the search results with search bar after search requested
-  if (searchResult) {
+  if (searchResult.length > 0) {
     return (
       <div className="align-items-center">
         {searchJsx}
         {photosJsx}
       </div>
     )
+  } else if (searched) {
+    return (
+      <div className="align-items-center">
+        {searchJsx}
+        <h5> There are no photos related to that keyword. Please try with another one!</h5>
+      </div>
+    )
   }
+
+  return (
+    searchJsx
+  )
 }
 
 export default Search

@@ -5,7 +5,7 @@ import Button from 'react-bootstrap/Button'
 import PhotoForm from './PhotoForm'
 // import { Link } from 'react-router-dom'
 
-const SearchResults = ({ title, photoId, photoUrl, photographer, portfolio, user }) => {
+const SearchResults = ({ title, photoId, photoUrl, photographer, portfolio, user, download }) => {
   const [collected, setCollected] = useState(false)
 
   // Update the collection status of photo with user's input
@@ -33,19 +33,26 @@ const SearchResults = ({ title, photoId, photoUrl, photographer, portfolio, user
   const resultJsx = (
     <Fragment>
       <Card style={{ width: '75%', margin: 'auto', textAlign: 'center' }}>
-        <Card.Img variant="top" src={photoUrl} />
+        <a href={photoUrl} rel="noreferrer noopener" target="_blank">
+          <Card.Img variant="bottom" src={photoUrl} />
+        </a>
         <Card.Body>
           <Col lg="12" className="text-center">
             {title}
             <hr />
+            By  {' '}
             <a href={portfolio} rel="noreferrer noopener" target="_blank">
-              By {photographer}
+              {photographer}
+            </a>
+            {' '}  on  {' '}
+            <a href="https://unsplash.com/" rel="noreferrer noopener" target="_blank">
+              Unsplash
             </a>
           </Col>
           <Button variant="outline-primary" onClick={handleClick}>Collect it!</Button>
           {'  '}
-          <Button rel="noreferrer noopener" target="_blank" href={photoUrl} variant="outline-success">
-            Discover it!
+          <Button rel="noreferrer noopener" target="_blank" href={download} variant="outline-success">
+            Download it!
           </Button>
         </Card.Body>
       </Card>

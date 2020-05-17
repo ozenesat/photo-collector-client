@@ -9,6 +9,7 @@ import axios from 'axios'
 const SearchCollections = props => {
   const [keyword, setKeyword] = useState('')
   const [collection, setCollection] = useState([])
+  const [searched, setSearched] = useState(false)
 
   const user = props.user
   const msgAlert = props.msgAlert
@@ -30,6 +31,7 @@ const SearchCollections = props => {
       .then(res => {
         setCollection(res.data.photos.results)
         setKeyword('')
+        setSearched(true)
       })
       .then(() => msgAlert({
         heading: 'Search Completed Successfully',
@@ -69,6 +71,7 @@ const SearchCollections = props => {
     })
       .then(res => {
         setCollection(res.data.photos)
+        setSearched(false)
       })
       .then(() => msgAlert({
         heading: 'Request Success',
@@ -107,21 +110,24 @@ const SearchCollections = props => {
   )
 
   // Returns the photo from random search with search bar after random photo requested
-  if (collection) {
+  if (collection.length > 0) {
     return (
       <div className="align-items-center">
         {searchJsx}
         {collectionsJsx}
       </div>
     )
+  } else if (searched) {
+    return (
+      <div className="align-items-center">
+        {searchJsx}
+        <h5> There are no collections related to that keyword. Please try with another one!</h5>
+      </div>
+    )
   }
 
-  // Returns the search results with search bar after search requested
-
   return (
-    <div className="align-items-center">
-      {searchJsx}
-    </div>
+    searchJsx
   )
 }
 

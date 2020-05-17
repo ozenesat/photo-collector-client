@@ -11,8 +11,8 @@ import axios from 'axios'
 const Collection = ({ title, collectionId, coverPhotoUrl, description, collectionLink, user }) => {
   const [discovered, setDiscoverd] = useState(false)
   const [photos, setPhotos] = useState([])
-  // const [relatedCollections, setRelatedCollections] = ([])
-
+  const [relatedCollections, setRelatedCollections] = useState([])
+  const [related, setRelated] = useState(false)
   // Update the collection status of photo with user's input
   const handleClick = event => {
     event.preventDefault()
@@ -23,7 +23,6 @@ const Collection = ({ title, collectionId, coverPhotoUrl, description, collectio
     })
       .then(res => {
         setPhotos(res.data.photos)
-        // console.log(res.data, 'RES')
         setDiscoverd(true)
       })
       .catch(console.err)
@@ -38,7 +37,8 @@ const Collection = ({ title, collectionId, coverPhotoUrl, description, collectio
       params: { collectionId }
     })
       .then(res => {
-        console.log(res.data, 'REL')
+        setRelatedCollections(res.data.photos)
+        setRelated(true)
         setDiscoverd(false)
       })
       .catch(console.err)
@@ -48,7 +48,7 @@ const Collection = ({ title, collectionId, coverPhotoUrl, description, collectio
   const resultJsx = (
     <Fragment>
       <Card style={{ width: '75%', margin: 'auto', textAlign: 'center' }}>
-        <Card.Img variant="top" src={coverPhotoUrl} />
+        <Card.Img variant="bottom" src={coverPhotoUrl} />
         <Card.Body>
           <Col lg="12" className="text-center">
             <a href={collectionLink} rel="noreferrer noopener" target="_blank">
@@ -58,7 +58,7 @@ const Collection = ({ title, collectionId, coverPhotoUrl, description, collectio
             {description}
           </Col>
           <Button variant="outline-primary" onClick={handleClick}>Collection Photos</Button>
-          <Button variant="outline-primary" onClick={relatedClick}>Related Collection</Button>
+          <Button variant="outline-success" onClick={relatedClick}>Related Collections</Button>
         </Card.Body>
       </Card>
     </Fragment>
@@ -74,11 +74,38 @@ const Collection = ({ title, collectionId, coverPhotoUrl, description, collectio
         photoUrl= {photo.urls.regular}
         photographer={photo.user.name}
         portfolio={photo.user.links.html}
+        download={photo.links.download}
         user={user}
       />
     ))
     return (
       photosJsx
+    )
+  }
+
+  if (related) {
+    const relatedJsx = (relatedCollections.map(collection => (
+      <Fragment key={collection.id}>
+        <Card style={{ width: '75%', margin: 'auto', textAlign: 'center' }}>
+          <Card.Img variant="bottom" src={collection.cover_photo.urls.regular} />
+          <Card.Body>
+            <Col lg="12" className="text-center">
+              <a href={collection.links.html} rel="noreferrer noopener" target="_blank">
+                {collection.title}
+              </a>
+              <hr />
+              {collection.description}
+            </Col>
+            <Button variant="outline-primary" onClick={handleClick}>Collection Photos</Button>
+            <p>Related with <a href={collectionLink} rel="noreferrer noopener" target="_blank">
+              {title}
+            </a> collection</p>
+          </Card.Body>
+        </Card>
+      </Fragment>
+    )))
+    return (
+      relatedJsx
     )
   }
   return (
