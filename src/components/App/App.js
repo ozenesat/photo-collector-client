@@ -12,6 +12,7 @@ import SignIn from '../Auth/SignIn'
 import SignOut from '../Auth/SignOut'
 import ChangePassword from '../Auth/ChangePassword'
 import Search from '../Photos/Search'
+import SearchCollections from '../Photos/SearchCollections'
 import Photos from '../Photos/PhotosIndex'
 import PhotoShow from '../Photos/PhotoShow'
 import PhotoUpdate from '../Photos/PhotoUpdate'
@@ -66,6 +67,9 @@ class App extends Component {
           )} />
           <AuthenticatedRoute user={user} path='/search' render={() => (
             <Search msgAlert={this.msgAlert} user={user} />
+          )} />
+          <AuthenticatedRoute user={user} path='/collections' render={() => (
+            <SearchCollections msgAlert={this.msgAlert} user={user} />
           )} />
           <AuthenticatedRoute user={user} exact path='/photos' render={() => (
             <Photos msgAlert={this.msgAlert} user={user} />

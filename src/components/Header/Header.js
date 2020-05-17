@@ -8,6 +8,7 @@ const authenticatedOptions = (
     <Nav.Link href="#sweet-home">Home</Nav.Link>
     <Nav.Link href="#photos">My Photo Collection</Nav.Link>
     <Nav.Link href="#search">Search Photos</Nav.Link>
+    <Nav.Link href="#collections">Search Collections</Nav.Link>
     <NavDropdown title="Authorization" id="nav-dropdown">
       <Nav.Link href="#change-password">Change Password</Nav.Link>
       <Nav.Link href="#sign-out">Sign Out</Nav.Link>
