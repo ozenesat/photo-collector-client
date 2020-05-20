@@ -6,7 +6,6 @@ import AutoDismissAlert from '../AutoDismissAlert/AutoDismissAlert'
 import Header from '../Header/Header'
 import Home from '../Home/Home'
 import Welcome from '../Home/Welcome'
-import SweetHome from '../Home/SweetHome'
 import SignUp from '../Auth/SignUp'
 import SignIn from '../Auth/SignIn'
 import SignOut from '../Auth/SignOut'
@@ -51,19 +50,16 @@ class App extends Component {
         ))}
         <main className="container">
           <Route exact path='/home' render={() => (
-            <Home msgAlert={this.msgAlert} setUser={this.setUser} />
+            <Home msgAlert={this.msgAlert} user={user} />
           )} />
           <Route exact path='/welcome' render={() => (
-            <Welcome msgAlert={this.msgAlert} setUser={this.setUser} />
+            <Welcome msgAlert={this.msgAlert} user={user} />
           )} />
           <Route path='/sign-up' render={() => (
             <SignUp msgAlert={this.msgAlert} setUser={this.setUser} />
           )} />
           <Route path='/sign-in' render={() => (
             <SignIn msgAlert={this.msgAlert} setUser={this.setUser} />
-          )} />
-          <AuthenticatedRoute user={user} exact path='/sweet-home' render={() => (
-            <SweetHome msgAlert={this.msgAlert} user={user} />
           )} />
           <AuthenticatedRoute user={user} path='/search' render={() => (
             <Search msgAlert={this.msgAlert} user={user} />

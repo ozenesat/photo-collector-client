@@ -5,7 +5,7 @@ import NavDropdown from 'react-bootstrap/NavDropdown'
 
 const authenticatedOptions = (
   <Fragment>
-    <Nav.Link href="#sweet-home">Home</Nav.Link>
+    <Nav.Link href="#home">Home</Nav.Link>
     <Nav.Link href="#photos">My Photo Collection</Nav.Link>
     <Nav.Link href="#search">Search Photos</Nav.Link>
     <Nav.Link href="#collections">Search Collections</Nav.Link>
