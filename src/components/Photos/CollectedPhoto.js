@@ -40,7 +40,7 @@ const CollectedPhoto = ({ title, photoId, photoUrl, photographer, portfolio, rat
           <Button className="icon-pencil"variant="outline-warning"> {''}Edit </Button>
         </Link>
         {' '}
-        <Button className="icon-close" variant="outline-danger" onClick={destroy}> {' '} Delete </Button>
+        <Button className="icon-close" variant="outline-danger" onClick={destroy}> {' '} Remove </Button>
       </Card.Body>
     </Card>
   )
@@ -51,7 +51,7 @@ const CollectedPhoto = ({ title, photoId, photoUrl, photographer, portfolio, rat
           key= '1'
           heading='Successfully'
           message='Photo deleted from your list!'
-          variant='success'
+          variant='primary'
         />
         <Redirect to={
           { pathname: '/photos' }

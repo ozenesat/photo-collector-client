@@ -56,7 +56,7 @@ const PhotoUpdate = (props) => {
       .then(() => msgAlert({
         heading: 'Successfully',
         message: 'Collection is updated!',
-        variant: 'success'
+        variant: 'primary'
       }))
       .catch(error => {
         msgAlert({

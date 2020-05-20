@@ -22,7 +22,7 @@ const ShowPhoto = (props) => {
       .then(() => msgAlert({
         heading: 'Successfully',
         message: 'Photo listed',
-        variant: 'success'
+        variant: 'primary'
       }))
       .catch(error => {
         msgAlert({

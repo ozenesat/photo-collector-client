@@ -100,7 +100,7 @@ const PhotoForm = ({ title, photoId, photoUrl, photographer, portfolio, user }) 
           key= '1'
           heading='Successfully'
           message='Photo added to your collection!'
-          variant='success'
+          variant='primary'
         />
         {collectedPhotoJsx}
       </div>

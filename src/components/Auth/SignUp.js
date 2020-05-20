@@ -33,7 +33,7 @@ class SignUp extends Component {
       .then(() => msgAlert({
         heading: 'Sign Up Success',
         message: messages.signUpSuccess,
-        variant: 'success'
+        variant: 'primary'
       }))
       .then(() => history.push('/welcome'))
       .catch(error => {

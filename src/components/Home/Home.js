@@ -90,7 +90,6 @@ const Home = (props) => {
       method: 'GET'
     })
       .then(res => {
-        console.log('hey')
         setPhotos(res.data.photos)
         setController(true)
       })

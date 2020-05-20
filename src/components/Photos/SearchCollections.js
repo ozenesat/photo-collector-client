@@ -36,7 +36,7 @@ const SearchCollections = props => {
       .then(() => msgAlert({
         heading: 'Search Completed Successfully',
         message: 'Results are listed',
-        variant: 'success'
+        variant: 'primary'
       }))
       .catch(error => {
         setKeyword('')
@@ -76,7 +76,7 @@ const SearchCollections = props => {
       .then(() => msgAlert({
         heading: 'Request Success',
         message: 'Random photo is showed',
-        variant: 'success'
+        variant: 'primary'
       }))
       .catch(error => {
         setKeyword('')
