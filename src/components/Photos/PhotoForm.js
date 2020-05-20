@@ -39,7 +39,6 @@ const PhotoForm = ({ title, photoId, photoUrl, photographer, portfolio, user }) 
       }
     })
       .then(setSubmitted(true))
-      .then(() => history.push('/'))
       .catch(console.error)
   }
 
