@@ -8,7 +8,7 @@ some spectacular photos and meet the talented people who took them!
 
 # Setup Steps
 <ul>
- <li> Fork and clone this repository.</li>
+ <li> Fork and <a target="_blank" rel="noopener noreferrer" href="https://github.com/ozenesat/photo-collector-client.git">clone this repository</a>.</li>
  <li> Run npm install to install all dependencies to install all dependencies.</li>
  <li> Use npm run start to spin up the server.</li>
 </ul>
