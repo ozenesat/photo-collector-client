@@ -6,7 +6,7 @@ some spectacular photos and meet the talented people who took them!
 
 -----------------------
 
-# Setup Steps
+## Setup Steps
 <ul>
  <li> Fork and <a target="_blank" rel="noopener noreferrer" href="https://github.com/ozenesat/photo-collector-client.git">clone this repository</a>.</li>
  <li> Run npm install to install all dependencies to install all dependencies.</li>
@@ -15,7 +15,7 @@ some spectacular photos and meet the talented people who took them!
 
 -----------------------
 
-# Related Links
+## Related Links
 <ul>
   <li><a target="_blank" rel="noopener noreferrer" href="https://github.com/ozenesat/photocollector-api">API Repo</a></li>
   <li><a target="_blank" rel="noopener noreferrer" href="https://mysterious-escarpment-32571.herokuapp.com">Deployed API</a></li>
@@ -24,7 +24,7 @@ some spectacular photos and meet the talented people who took them!
 
 -----------------------
 
-# Developing Proccess
+## Developing Proccess
 
 I started to work on this project with field research. In my capstone project I would like to develop a website that has a real user experience where user can spend couple hours easily. So I need some third party API's to achive this goal. And I searched for free APIs. After 2 days of field search I decided to go with Unsplash. As a former journo, I always find photos attractive and I can spend a few hours easily when I am discovering new photos. Then I started to read <a target="_blank" rel="noopener noreferrer" href="https://unsplash.com/documentation"> the documention of Unsplash.</a>
 
@@ -38,7 +38,7 @@ Lastly, I tested all functionalities and fixed the errors and bugs. Then I desig
 
 -----------------------
 
-# User Stories
+## User Stories
 <ul>
   <li> As an unregistered user, I can see random photos.</li>
   <li> As a user, I want to sign in and sign up.</li>
@@ -55,7 +55,7 @@ Lastly, I tested all functionalities and fixed the errors and bugs. Then I desig
 
 -----------------------
 
-# Technologies Used
+## Technologies Used
 <ul>
   <li>React.js</li>
   <li>Javascript</li>
@@ -66,7 +66,7 @@ Lastly, I tested all functionalities and fixed the errors and bugs. Then I desig
 
 -----------------------
 
-# Unsolved Problems ~ Designed Updates
+## Unsolved Problems ~ Designed Updates
 <ul>
   <li> Better search experience, more random, mixed results.</li>
   <li> Design for home pages should be imporoved.</li>
@@ -78,11 +78,11 @@ Lastly, I tested all functionalities and fixed the errors and bugs. Then I desig
 
 -----------------------
 
-# Wireframe
+## Wireframe
 ![autodraw 5_11_2020 (2)](https://media.git.generalassemb.ly/user/26372/files/d407a300-9392-11ea-8279-12ac037ce2fd)
 
 -----------------------
 
-# Screen Shots from Photo Collector
+## Screen Shots from Photo Collector
 ![Screenshot from 2020-05-21 14-24-49](https://media.git.generalassemb.ly/user/26372/files/de822380-9b6e-11ea-995c-ebc6e6c54271)
 ![Screenshot from 2020-05-21 14-28-11](https://media.git.generalassemb.ly/user/26372/files/5b150200-9b6f-11ea-9bcb-4291b4aa36a4)
