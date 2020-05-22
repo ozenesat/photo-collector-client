@@ -48,7 +48,7 @@ class App extends Component {
             message={msgAlert.message}
           />
         ))}
-        <main className="container">
+        <main className="container-fluid" style={{ padding: '0px' }}>
           <Route exact path='/home' render={() => (
             <Home msgAlert={this.msgAlert} user={user} />
           )} />
