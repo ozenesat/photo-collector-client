@@ -43,7 +43,7 @@ const PhotoForm = ({ title, photoId, photoUrl, photographer, portfolio, user }) 
   }
 
   const photoJsx = (
-    <Card style={{ width: '65%', margin: 'auto' }}>
+    <Card style={{ width: '50%', margin: 'auto' }}>
       <Card.Img variant="bottom" src={photoUrl} />
       <Card.Body>
         <Col lg="12" className="text-center">
@@ -73,7 +73,7 @@ const PhotoForm = ({ title, photoId, photoUrl, photographer, portfolio, user }) 
   )
 
   const collectedPhotoJsx = (
-    <Card style={{ width: '65%', margin: 'auto', textAlign: 'center' }}>
+    <Card style={{ width: '50%', margin: 'auto', textAlign: 'center' }}>
       <a rel="noreferrer noopener" target="_blank" href={photoUrl}>
         <Card.Img src={photoUrl}/> </a>
       <Card.Body>

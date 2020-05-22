@@ -47,7 +47,7 @@ const Collection = ({ title, collectionId, coverPhotoUrl, description, collectio
   // Search results in boxes
   const resultJsx = (
     <Fragment>
-      <Card style={{ width: '75%', margin: 'auto', textAlign: 'center' }}>
+      <Card style={{ width: '50%', margin: 'auto', textAlign: 'center' }}>
         <Card.Img variant="bottom" src={coverPhotoUrl} />
         <Card.Body>
           <Col lg="12" className="text-center">
@@ -86,7 +86,7 @@ const Collection = ({ title, collectionId, coverPhotoUrl, description, collectio
   if (related) {
     const relatedJsx = (relatedCollections.map(collection => (
       <Fragment key={collection.id}>
-        <Card style={{ width: '75%', margin: 'auto', textAlign: 'center' }}>
+        <Card style={{ width: '50%', margin: 'auto', textAlign: 'center' }}>
           <Card.Img variant="bottom" src={collection.cover_photo.urls.regular} />
           <Card.Body>
             <Col lg="12" className="text-center">
