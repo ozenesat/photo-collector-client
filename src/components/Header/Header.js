@@ -2,7 +2,7 @@ import React, { Fragment } from 'react'
 import Nav from 'react-bootstrap/Nav'
 import Navbar from 'react-bootstrap/Navbar'
 import NavDropdown from 'react-bootstrap/NavDropdown'
-
+import logo from './favicon.png'
 const authenticatedOptions = (
   <Fragment>
     <Nav.Link href="#home">Home</Nav.Link>
@@ -26,17 +26,20 @@ const unauthenticatedOptions = (
 
 const Header = ({ user }) => (
   <div>
-    <Navbar style={{ background: 'linear-gradient(90deg, rgba(36,58,111,0.35) 3%, rgba(36,58,111,0.87) 50%, rgba(36,58,111,0.35) 97%)',
+    <Navbar style={{ background: 'radial-gradient(circle, transparent 20%, #f9f9f9 20%, #f9f9f9 80%, transparent 80%, transparent), radial-gradient(circle, transparent 20%, #f9f9f9 20%, #f9f9f9 80%, transparent 80%, transparent) 50px 50px, linear-gradient(#98d6ea 8px, transparent 8px) 0 -4px, linear-gradient(90deg, #98d6ea 8px, transparent 8px) -4px 0',
       fontWeight: 'bold',
-      fontFamily: 'Permanent Marker, cursive' }} expand="md">
-      <Navbar.Brand href="#welcome">
-      📸 Photo Collector
+      backgroundColor: '#f9f9f9',
+      backgroundSize: '100px 100px, 100px 100px, 50px 50px, 50px 50px',
+      fontFamily: 'Righteous, cursive',
+      fontSize: '1.5em' }} expand="md">
+      <Navbar.Brand href="#welcome" style={{ fontSize: '1em', background: '#f9f9f9' }}>
+        <img src={logo} style={{ height: '1.5em' }}/> Photo Collector
       </Navbar.Brand>
       <Navbar.Toggle aria-controls="basic-navbar-nav" />
       <Navbar.Collapse id="basic-navbar-nav">
-        <Nav className="ml-auto">
+        <Nav className="ml-auto" style={{ fontSize: '1em', background: '#f9f9f9' }}>
           { user ? authenticatedOptions : unauthenticatedOptions }
-          { user && <span style={{ color: 'rgba(36,58,111,0.77)' }} className="navbar-text mr-2">Welcome, {user.email}</span>}
+          { user && <span style={{ color: '#98d6ea' }} className="navbar-text mr-2">Welcome, {user.email}</span>}
         </Nav>
       </Navbar.Collapse>
     </Navbar>
