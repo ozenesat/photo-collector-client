@@ -98,7 +98,7 @@ const Home = (props) => {
 
   if (controller && user) {
     const photosJsx = (
-      <Carousel>
+      <Carousel style={{ justifyContent: 'center', textAlign: 'center' }}>
         <Carousel.Item>
           <img
             style={{ objectFit: 'cover',
@@ -108,7 +108,7 @@ const Home = (props) => {
             src={photos[0].urls.regular}
             alt="First slide"
           />
-          <Carousel.Caption style={{ background: 'rgb(152, 214, 234, .7)', color: 'rgba(0, 0, 0, 0.85)' }}>
+          <Carousel.Caption style={{ fontSize: '1.5em', fontFamily: 'Times New Roman', textAlign: 'center', background: 'rgba(4,9,23,0.5) ', color: 'white' }}>
             <h3 type="submit" onClick={handleClick0}>A Photo by {photos[0].user.name}. Add it to your collection</h3>
             <h4>{photos[0].alt_description}</h4>
           </Carousel.Caption>
@@ -122,7 +122,7 @@ const Home = (props) => {
             src={photos[1].urls.regular}
             alt="Second slide"
           />
-          <Carousel.Caption style={{ background: 'rgb(152, 214, 234, .7)', color: 'rgba(0, 0, 0, 0.85)' }}>
+          <Carousel.Caption style={{ fontSize: '1.5em', fontFamily: 'Times New Roman', textAlign: 'center', background: 'rgba(4,9,23,0.5) ', color: 'white' }}>
             <h3 type="submit" onClick={handleClick1}>A Photo by {photos[1].user.name}. Add it to your collection</h3>
             <h4>{photos[1].alt_description}</h4>
           </Carousel.Caption>
@@ -137,7 +137,7 @@ const Home = (props) => {
             alt="Third slide"
           />
 
-          <Carousel.Caption style={{ background: 'rgb(152, 214, 234, .7)', color: 'rgba(0, 0, 0, 0.85)' }}>
+          <Carousel.Caption style={{ fontSize: '1.5em', fontFamily: 'Times New Roman', textAlign: 'center', background: 'rgba(4,9,23,0.5) ', color: 'white' }}>
             <h3 type="submit" onClick={handleClick2}>A Photo by {photos[2].user.name}. Add it to your collection</h3>
             <h4>{photos[2].alt_description}</h4>
           </Carousel.Caption>
@@ -159,7 +159,7 @@ const Home = (props) => {
             src={photos[0].urls.regular}
             alt="First slide"
           />
-          <Carousel.Caption style={{ background: 'rgb(152, 214, 234, .7)', color: 'rgba(0, 0, 0, 0.85)' }}>
+          <Carousel.Caption style={{ fontSize: '1.5em', fontFamily: 'Times New Roman', textAlign: 'center', background: 'rgba(4,9,23,0.5) ', color: 'white' }}>
             <h3>A Photo by {photos[0].user.name}. Sign in to add it in your collection</h3>
             <h4>{photos[0].alt_description}</h4>
           </Carousel.Caption>
@@ -173,7 +173,7 @@ const Home = (props) => {
             src={photos[1].urls.regular}
             alt="Second slide"
           />
-          <Carousel.Caption style={{ background: 'rgb(152, 214, 234, .7)', color: 'rgba(0, 0, 0, 0.85)' }}>
+          <Carousel.Caption style={{ fontSize: '1.5em', fontFamily: 'Times New Roman', textAlign: 'center', background: 'rgba(4,9,23,0.5) ', color: 'white' }}>
             <h3>A Photo by {photos[1].user.name}. Sign in to add it in your collection</h3>
             <h4>{photos[1].alt_description}</h4>
           </Carousel.Caption>
@@ -188,7 +188,7 @@ const Home = (props) => {
             alt="Third slide"
           />
 
-          <Carousel.Caption style={{ background: 'rgb(152, 214, 234, .7)', color: 'rgba(0, 0, 0, 0.85)' }}>
+          <Carousel.Caption style={{ fontSize: '1.5em', fontFamily: 'Times New Roman', textAlign: 'center', background: 'rgba(4,9,23,0.5) ', color: 'white' }}>
             <h3>A Photo by {photos[2].user.name}. Sign in to add it in your collection</h3>
             <h4>{photos[2].alt_description}</h4>
           </Carousel.Caption>

@@ -22,6 +22,7 @@ const Collection = ({ title, collectionId, coverPhotoUrl, description, collectio
       params: { collectionId }
     })
       .then(res => {
+        console.log(res, 'res')
         setPhotos(res.data.photos)
         setDiscoverd(true)
       })
@@ -69,6 +70,7 @@ const Collection = ({ title, collectionId, coverPhotoUrl, description, collectio
     const photosJsx = photos.map(photo => (
       <SearchResults
         key={photo.id}
+        related={title}
         title={photo.alt_description}
         photoId={photo.id}
         photoUrl= {photo.urls.regular}

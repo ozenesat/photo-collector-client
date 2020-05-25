@@ -51,8 +51,8 @@ class SignUp extends Component {
 
     return (
       <div className="row">
-        <div className="col-sm-10 col-md-8 mx-auto mt-5">
-          <h3>Sign Up</h3>
+        <div className="col-sm-3 col-md-4 col mx-auto mt-5">
+          <h3 style={{ marginBottom: '1em' }}>Sign Up</h3>
           <Form onSubmit={this.onSignUp}>
             <Form.Group controlId="email">
               <Form.Label>Email address</Form.Label>

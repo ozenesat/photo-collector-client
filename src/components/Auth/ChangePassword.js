@@ -48,8 +48,8 @@ class ChangePassword extends Component {
 
     return (
       <div className="row">
-        <div className="col-sm-10 col-md-8 mx-auto mt-5">
-          <h3>Change Password</h3>
+        <div className="col-sm-3 col-md-4 col mx-auto mt-5">
+          <h3 style={{ marginBottom: '1em' }}>Change Password</h3>
           <Form onSubmit={this.onChangePassword}>
             <Form.Group controlId="oldPassword">
               <Form.Label>Old password</Form.Label>

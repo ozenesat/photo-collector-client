@@ -16,6 +16,7 @@ const authenticatedOptions = (
   </Fragment>
 )
 
+// background: 'radial-gradient(circle, transparent 20%, #f9f9f9 20%, #f9f9f9 80%, transparent 80%, transparent), radial-gradient(circle, transparent 20%, #f9f9f9 20%, #f9f9f9 80%, transparent 80%, transparent) 50px 50px, linear-gradient(#98d6ea 8px, transparent 8px) 0 -4px, linear-gradient(90deg, #98d6ea 8px, transparent 8px) -4px 0'
 const unauthenticatedOptions = (
   <Fragment >
     <Nav.Link href="#home">Home</Nav.Link>
@@ -26,14 +27,13 @@ const unauthenticatedOptions = (
 
 const Header = ({ user }) => (
   <div>
-    <Navbar style={{ background: 'radial-gradient(circle, transparent 20%, #f9f9f9 20%, #f9f9f9 80%, transparent 80%, transparent), radial-gradient(circle, transparent 20%, #f9f9f9 20%, #f9f9f9 80%, transparent 80%, transparent) 50px 50px, linear-gradient(#98d6ea 8px, transparent 8px) 0 -4px, linear-gradient(90deg, #98d6ea 8px, transparent 8px) -4px 0',
-      fontWeight: 'bold',
-      backgroundColor: '#f9f9f9',
-      backgroundSize: '100px 100px, 100px 100px, 50px 50px, 50px 50px',
+    <Navbar style={{ fontWeight: 'bold',
+      backgroundColor: 'whitesmoke',
       fontFamily: 'Righteous, cursive',
-      fontSize: '1.5em' }} expand="md">
-      <Navbar.Brand href="#welcome" style={{ fontSize: '1em', background: '#f9f9f9' }}>
-        <img src={logo} style={{ height: '1.5em' }}/> Photo Collector
+      fontSize: '1.2em' }} expand="md">
+      <img src={logo} style={{ height: '1.3em' }}/>
+      <Navbar.Brand href="#welcome" style={{ fontSize: '1.3em', background: '#f9f9f9', marginLeft: '0.25em' }}>
+         Photo Collector
       </Navbar.Brand>
       <Navbar.Toggle aria-controls="basic-navbar-nav" />
       <Navbar.Collapse id="basic-navbar-nav">

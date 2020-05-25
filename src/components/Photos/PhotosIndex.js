@@ -61,10 +61,10 @@ const Photos = props => {
   let userPhotos
   const searchBarJsx = (
     <div>
-      <h1 style={{ textAlign: 'center', fontWeight: 'bold', fontFamily: 'Permanent Marker, cursive' }}>My Photos</h1>
+      <h3 style={{ padding: '1em', textAlign: 'center' }}>My Photos</h3>
       <Form style={{ textAlign: 'center' }} onSubmit={handleSubmit}>
-        <Form.Group size="lg" controlId="keyword">
-          <Form.Control style={{ textAlign: 'center' }} type="text" name="keyword" value={keyword} placeholder="Enter any word from the photo title"
+        <Form.Group size="lg" controlId="keyword" style={{ textAlign: 'center', display: 'flex', justifyContent: 'center', flexDirecton: 'column' }}>
+          <Form.Control style={{ textAlign: 'center', maxWidth: '50em' }} type="text" name="keyword" value={keyword} placeholder="Enter any word from the photo title"
             onChange={handleChange}/>
         </Form.Group>
         <Button variant="outline-info" type="submit">

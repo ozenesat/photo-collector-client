@@ -5,7 +5,7 @@ import Button from 'react-bootstrap/Button'
 import PhotoForm from './PhotoForm'
 // import { Link } from 'react-router-dom'
 
-const SearchResults = ({ title, photoId, photoUrl, photographer, portfolio, user, download }) => {
+const SearchResults = ({ title, photoId, photoUrl, photographer, portfolio, user, download, related }) => {
   const [collected, setCollected] = useState(false)
 
   // Update the collection status of photo with user's input
@@ -54,6 +54,7 @@ const SearchResults = ({ title, photoId, photoUrl, photographer, portfolio, user
           <Button rel="noreferrer noopener" target="_blank" href={download} variant="outline-success">
             Download it!
           </Button>
+          <h5>{related}</h5>
         </Card.Body>
       </Card>
     </Fragment>

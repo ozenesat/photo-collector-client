@@ -69,6 +69,7 @@ const SearchCollections = props => {
       method: 'GET'
     })
       .then(res => {
+        console.log(res, 'random')
         setCollection(res.data.photos)
         setSearched(false)
       })
@@ -90,10 +91,10 @@ const SearchCollections = props => {
   // Search Bar
   const searchJsx = (
     <Fragment>
-      <h3 style={{ textAlign: 'center', fontFamily: 'Permanent Marker, cursive' }}>Which collection would you like to discover today?</h3>
+      <h3 style={{ padding: '1em', textAlign: 'center' }}>Which collection would you like to discover today?</h3>
       <Form style={{ textAlign: 'center' }} onSubmit={handleSubmit}>
-        <Form.Group size="lg" controlId="keyword">
-          <Form.Control style={{ textAlign: 'center' }} type="text" name="keyword" placeholder="Keyword" value={keyword}
+        <Form.Group size="lg" controlId="keyword" style={{ textAlign: 'center', display: 'flex', justifyContent: 'center', flexDirecton: 'column' }}>
+          <Form.Control style={{ textAlign: 'center', maxWidth: '50em' }} type="text" name="keyword" placeholder="Keyword" value={keyword}
             onChange={handleChange}/>
         </Form.Group>
         <Button variant="outline-info" type="submit">
