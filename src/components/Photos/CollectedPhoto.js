@@ -23,7 +23,7 @@ const CollectedPhoto = ({ title, photoId, photoUrl, photographer, portfolio, rat
   }
 
   const returnJsx = (
-    <Card style={{ width: '50%', margin: 'auto', textAlign: 'center' }}>
+    <Card style={{ width: '60%', margin: 'auto', textAlign: 'center', padding: '1em', border: '0.2em outset', marginBottom: '1em' }}>
       <a rel="noreferrer noopener" target="_blank" href={photoUrl}>
         <Card.Img src={photoUrl}/> </a>
       <Card.Body>

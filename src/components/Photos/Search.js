@@ -92,7 +92,7 @@ const Search = props => {
   // Search Bar
   const searchJsx = (
     <Fragment>
-      <h3 style={{ padding: '1em', textAlign: 'center' }}>What would you like to search today?</h3>
+      <h3 style={{ marginTop: '2em', padding: '1em', textAlign: 'center' }}>What would you like to search today?</h3>
       <Form onSubmit={handleSubmit} style={{ textAlign: 'center' }}>
         <Form.Group size="lg" controlId="keyword" style={{ textAlign: 'center', display: 'flex', justifyContent: 'center', flexDirecton: 'column' }}>
           <Form.Control style={{ textAlign: 'center', maxWidth: '50em' }} type="text" name="keyword" placeholder="Keyword" value={keyword}

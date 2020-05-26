@@ -71,7 +71,7 @@ const PhotoUpdate = (props) => {
   let collectedPhotoJsx
   if (photo) {
     collectedPhotoJsx = (
-      <Card style={{ width: '50%', margin: 'auto', textAlign: 'center' }}>
+      <Card style={{ width: '60%', margin: 'auto', textAlign: 'center', padding: '1em', border: '0.2em outset', marginBottom: '1em' }}>
         <a rel="noreferrer noopener" target="_blank" href={photo.photoUrl}>
           <Card.Img src={photo.photoUrl}/> </a>
         <Card.Body>
@@ -106,7 +106,7 @@ const PhotoUpdate = (props) => {
     )
   }
   return (
-    <Card style={{ width: '50%', margin: 'auto', textAlign: 'center' }}>
+    <Card style={{ width: '60%', margin: 'auto', textAlign: 'center', padding: '1em', border: '0.2em outset', marginBottom: '1em' }}>
       <Card.Img variant="bottom" src={photo.photoUrl} />
       <Card.Body>
         <Col lg="12" className="text-center">

@@ -43,7 +43,7 @@ const PhotoForm = ({ title, photoId, photoUrl, photographer, portfolio, user }) 
   }
 
   const photoJsx = (
-    <Card style={{ width: '50%', margin: 'auto' }}>
+    <Card style={{ width: '60%', margin: 'auto', textAlign: 'center', padding: '1em', border: '0.2em outset', marginBottom: '1em' }}>
       <Card.Img variant="bottom" src={photoUrl} />
       <Card.Body>
         <Col lg="12" className="text-center">
@@ -52,7 +52,7 @@ const PhotoForm = ({ title, photoId, photoUrl, photographer, portfolio, user }) 
           <Form onSubmit={handleSubmit}>
             <Form.Group controlId="rating">
               <Form.Label>Rating</Form.Label>
-              <Form.Control required as="select" name="rating" onChange={handleChange} value={userReview.rating}>
+              <Form.Control required as="select" name="rating" onChange={handleChange} value={userReview.rating} style={{ textAlign: 'center' }}>
                 <option> </option>
                 <option>🌟</option>
                 <option>⭐🌟</option>
@@ -73,7 +73,7 @@ const PhotoForm = ({ title, photoId, photoUrl, photographer, portfolio, user }) 
   )
 
   const collectedPhotoJsx = (
-    <Card style={{ width: '50%', margin: 'auto', textAlign: 'center' }}>
+    <Card style={{ width: '60%', margin: 'auto', textAlign: 'center', padding: '1em', border: '0.2em outset', marginBottom: '1em' }}>
       <a rel="noreferrer noopener" target="_blank" href={photoUrl}>
         <Card.Img src={photoUrl}/> </a>
       <Card.Body>

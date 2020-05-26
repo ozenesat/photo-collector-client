@@ -50,13 +50,13 @@ class SignUp extends Component {
     const { email, password, passwordConfirmation } = this.state
 
     return (
-      <div className="row">
+      <div className="row" style={{ marginTop: '2em', padding: '1em', textAlign: 'center' }}>
         <div className="col-sm-3 col-md-4 col mx-auto mt-5">
           <h3 style={{ marginBottom: '1em' }}>Sign Up</h3>
           <Form onSubmit={this.onSignUp}>
             <Form.Group controlId="email">
-              <Form.Label>Email address</Form.Label>
-              <Form.Control
+              <Form.Label>Email:</Form.Label>
+              <Form.Control style={{ textAlign: 'center' }}
                 required
                 type="email"
                 name="email"
@@ -66,8 +66,8 @@ class SignUp extends Component {
               />
             </Form.Group>
             <Form.Group controlId="password">
-              <Form.Label>Password</Form.Label>
-              <Form.Control
+              <Form.Label>Password:</Form.Label>
+              <Form.Control style={{ textAlign: 'center' }}
                 required
                 name="password"
                 value={password}
@@ -77,8 +77,8 @@ class SignUp extends Component {
               />
             </Form.Group>
             <Form.Group controlId="passwordConfirmation">
-              <Form.Label>Password Confirmation</Form.Label>
-              <Form.Control
+              <Form.Label>Confirmation:</Form.Label>
+              <Form.Control style={{ textAlign: 'center' }}
                 required
                 name="passwordConfirmation"
                 value={passwordConfirmation}

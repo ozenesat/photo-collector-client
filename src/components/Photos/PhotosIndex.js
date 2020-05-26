@@ -61,7 +61,7 @@ const Photos = props => {
   let userPhotos
   const searchBarJsx = (
     <div>
-      <h3 style={{ padding: '1em', textAlign: 'center' }}>My Photos</h3>
+      <h3 style={{ marginTop: '2em', padding: '1em', textAlign: 'center' }}>My Photos</h3>
       <Form style={{ textAlign: 'center' }} onSubmit={handleSubmit}>
         <Form.Group size="lg" controlId="keyword" style={{ textAlign: 'center', display: 'flex', justifyContent: 'center', flexDirecton: 'column' }}>
           <Form.Control style={{ textAlign: 'center', maxWidth: '50em' }} type="text" name="keyword" value={keyword} placeholder="Enter any word from the photo title"

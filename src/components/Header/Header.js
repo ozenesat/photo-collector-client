@@ -7,8 +7,10 @@ const authenticatedOptions = (
   <Fragment>
     <Nav.Link href="#home">Home</Nav.Link>
     <Nav.Link href="#photos">My Photo Collection</Nav.Link>
-    <Nav.Link href="#search">Search Photos</Nav.Link>
-    <Nav.Link href="#collections">Search Collections</Nav.Link>
+    <NavDropdown title="Search" id="nav-dropdown">
+      <Nav.Link href="#search">Search Photos</Nav.Link>
+      <Nav.Link href="#collections">Search Collections</Nav.Link>
+    </NavDropdown>
     <NavDropdown title="Authorization" id="nav-dropdown">
       <Nav.Link href="#change-password">Change Password</Nav.Link>
       <Nav.Link href="#sign-out">Sign Out</Nav.Link>
@@ -28,16 +30,17 @@ const unauthenticatedOptions = (
 const Header = ({ user }) => (
   <div>
     <Navbar style={{ fontWeight: 'bold',
-      backgroundColor: 'whitesmoke',
+      backgroundColor: 'rgba(249, 249, 249, 0.7)',
+      color: 'white',
       fontFamily: 'Righteous, cursive',
-      fontSize: '1.2em' }} expand="md">
+      fontSize: '1.2em' }} className="fixed-top" expand="md">
       <img src={logo} style={{ height: '1.3em' }}/>
-      <Navbar.Brand href="#welcome" style={{ fontSize: '1.3em', background: '#f9f9f9', marginLeft: '0.25em' }}>
+      <Navbar.Brand href="#welcome" style={{ fontSize: '1.3em', padding: '0.2em', marginLeft: '0.25em' }}>
          Photo Collector
       </Navbar.Brand>
       <Navbar.Toggle aria-controls="basic-navbar-nav" />
       <Navbar.Collapse id="basic-navbar-nav">
-        <Nav className="ml-auto" style={{ fontSize: '1em', background: '#f9f9f9' }}>
+        <Nav className="ml-auto" style={{ fontSize: '1em' }}>
           { user ? authenticatedOptions : unauthenticatedOptions }
           { user && <span style={{ color: '#98d6ea' }} className="navbar-text mr-2">Welcome, {user.email}</span>}
         </Nav>

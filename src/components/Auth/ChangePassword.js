@@ -47,13 +47,13 @@ class ChangePassword extends Component {
     const { oldPassword, newPassword } = this.state
 
     return (
-      <div className="row">
+      <div className="row" style={{ marginTop: '2em', padding: '1em', textAlign: 'center' }}>
         <div className="col-sm-3 col-md-4 col mx-auto mt-5">
           <h3 style={{ marginBottom: '1em' }}>Change Password</h3>
           <Form onSubmit={this.onChangePassword}>
             <Form.Group controlId="oldPassword">
-              <Form.Label>Old password</Form.Label>
-              <Form.Control
+              <Form.Label>Old password:</Form.Label>
+              <Form.Control style={{ textAlign: 'center' }}
                 required
                 name="oldPassword"
                 value={oldPassword}
@@ -63,8 +63,8 @@ class ChangePassword extends Component {
               />
             </Form.Group>
             <Form.Group controlId="newPassword">
-              <Form.Label>New Password</Form.Label>
-              <Form.Control
+              <Form.Label>New Password:</Form.Label>
+              <Form.Control style={{ textAlign: 'center' }}
                 required
                 name="newPassword"
                 value={newPassword}

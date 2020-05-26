@@ -32,7 +32,7 @@ const SearchResults = ({ title, photoId, photoUrl, photographer, portfolio, user
   // Search results in boxes
   const resultJsx = (
     <Fragment>
-      <Card style={{ width: '50%', margin: 'auto', textAlign: 'center' }}>
+      <Card style={{ width: '60%', margin: 'auto', textAlign: 'center', padding: '1em', border: '0.2em outset', marginBottom: '1em' }}>
         <a href={photoUrl} rel="noreferrer noopener" target="_blank">
           <Card.Img variant="bottom" src={photoUrl} />
         </a>
