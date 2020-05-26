@@ -3,6 +3,7 @@ import Carousel from 'react-bootstrap/Carousel'
 import axios from 'axios'
 import apiUrl from '../../apiConfig'
 import PhotoForm from '../Photos/PhotoForm'
+import logo from './01.gif'
 
 // Home page for signed-in users with random photos which they can collect
 const Home = (props) => {
@@ -201,9 +202,9 @@ const Home = (props) => {
   }
 
   return (
-    <div style={{ marginTop: '2em', padding: '1em', textAlign: 'center' }}>
+    <div style={{ marginTop: '4em', padding: '1em', textAlign: 'center' }}>
       <h1> Welcome to Photo Collector</h1>
-      <h4>Loading...</h4>
+      <img src={logo}/>
     </div>
   )
 }
