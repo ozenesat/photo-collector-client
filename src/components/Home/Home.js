@@ -201,7 +201,7 @@ const Home = (props) => {
   }
 
   return (
-    <div>
+    <div style={{ marginTop: '2em', padding: '1em', textAlign: 'center' }}>
       <h1> Welcome to Photo Collector</h1>
       <h4>Loading...</h4>
     </div>
