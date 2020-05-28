@@ -2,9 +2,8 @@ import React, { Fragment, useState } from 'react'
 import Card from 'react-bootstrap/Card'
 import Col from 'react-bootstrap/Col'
 import Button from 'react-bootstrap/Button'
-// import PhotoForm from './PhotoForm'
+import AutoDismissAlert from '../AutoDismissAlert/AutoDismissAlert'
 import SearchResults from './SearchResults'
-// import { Link } from 'react-router-dom'
 import apiUrl from '../../apiConfig'
 import axios from 'axios'
 
@@ -13,7 +12,8 @@ const Collection = ({ title, collectionId, coverPhotoUrl, description, collectio
   const [photos, setPhotos] = useState([])
   const [relatedCollections, setRelatedCollections] = useState([])
   const [related, setRelated] = useState(false)
-  // Update the collection status of photo with user's input
+
+  // Get photos of the collection
   const handleClick = event => {
     event.preventDefault()
     axios({
@@ -62,6 +62,12 @@ const Collection = ({ title, collectionId, coverPhotoUrl, description, collectio
           <Button variant="outline-success" onClick={relatedClick}>Related Collections</Button>
         </Card.Body>
       </Card>
+      <AutoDismissAlert
+        key= '1'
+        heading='Successfully'
+        message='Photo Collections are listed!'
+        variant='primary'
+      />
     </Fragment>
   )
 
@@ -81,7 +87,15 @@ const Collection = ({ title, collectionId, coverPhotoUrl, description, collectio
       />
     ))
     return (
-      photosJsx
+      <Fragment>
+        {photosJsx}
+        <AutoDismissAlert
+          key= '1'
+          heading='Successfully'
+          message="Collection photos are listed!"
+          variant='primary'
+        />
+      </Fragment>
     )
   }
 
@@ -104,6 +118,12 @@ const Collection = ({ title, collectionId, coverPhotoUrl, description, collectio
             </a> collection</p>
           </Card.Body>
         </Card>
+        <AutoDismissAlert
+          key= '1'
+          heading='Successfully'
+          message='Related Collections are listed!'
+          variant='primary'
+        />
       </Fragment>
     )))
     return (

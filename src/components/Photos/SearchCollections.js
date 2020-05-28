@@ -61,7 +61,7 @@ const SearchCollections = props => {
     />
   ))
 
-  // get a random collection from unsplash
+  // get Featured collections from unsplash
   const handleClick = event => {
     event.preventDefault()
     axios({
@@ -75,13 +75,13 @@ const SearchCollections = props => {
       })
       .then(() => msgAlert({
         heading: 'Request Success',
-        message: 'Random photo is showed',
+        message: 'Featured collections are listed',
         variant: 'primary'
       }))
       .catch(error => {
         setKeyword('')
         msgAlert({
-          heading: 'Search Failed',
+          heading: 'Request Failed',
           message: error.message,
           variant: 'danger'
         })
