@@ -1,4 +1,4 @@
-import React, { Fragment, useState } from 'react'
+import React, { useState } from 'react'
 import Carousel from 'react-bootstrap/Carousel'
 import axios from 'axios'
 import apiUrl from '../../apiConfig'
@@ -21,7 +21,7 @@ const Home = (props) => {
 
   if (collected0) {
     const photoJsx0 = (
-      <Fragment>
+      <div style={{ marginTop: '4em' }}>
         <PhotoForm
           key={photos[0].id}
           title={photos[0].alt_description}
@@ -31,7 +31,7 @@ const Home = (props) => {
           portfolio= {photos[0].user.links.html}
           user= {props.user}
         />
-      </Fragment>
+      </div>
     )
     return (
       photoJsx0
@@ -44,7 +44,7 @@ const Home = (props) => {
 
   if (collected1) {
     const photoJsx1 = (
-      <Fragment>
+      <div style={{ marginTop: '4em' }}>
         <PhotoForm
           key={photos[1].id}
           title={photos[1].alt_description}
@@ -54,7 +54,7 @@ const Home = (props) => {
           portfolio= {photos[1].user.links.html}
           user= {props.user}
         />
-      </Fragment>
+      </div>
     )
     return (
       photoJsx1
@@ -67,7 +67,7 @@ const Home = (props) => {
 
   if (collected2) {
     const photoJsx2 = (
-      <Fragment>
+      <div style={{ marginTop: '4em' }}>
         <PhotoForm
           key={photos[2].id}
           title={photos[2].alt_description}
@@ -77,7 +77,7 @@ const Home = (props) => {
           portfolio= {photos[2].user.links.html}
           user= {props.user}
         />
-      </Fragment>
+      </div>
     )
 
     return (
