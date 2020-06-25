@@ -23,9 +23,13 @@ const Photos = props => {
   // Bring the results of search in my photo collection page
   const handleSubmit = event => {
     event.preventDefault()
-    setResults(photos.filter(photo => photo.title.includes(keyword)))
+    setResults(photos.filter(photo => photo.title.toLowerCase().includes(keyword.toLowerCase())))
     setKeyword('')
-    setSearched(true)
+    if (searched) {
+      setSearched(false)
+    } else {
+      setSearched(true)
+    }
   }
 
   // Retrieve all collected photos
@@ -121,6 +125,9 @@ const Photos = props => {
         <div>
           {searchBarJsx}
           {photosJsx}
+          <div style={{ textAlign: 'center', margin: '0.75em' }}>
+            <Button onClick={handleSubmit} variant="outline-success">Back to Collection</Button>
+          </div>
         </div>
       )
     } else {
@@ -128,6 +135,9 @@ const Photos = props => {
         <div className="align-items-center">
           {searchBarJsx}
           <h5> There is no photos related with this title yet!</h5>
+          <div style={{ textAlign: 'center', margin: '0.75em' }}>
+            <Button onClick={handleSubmit} variant="outline-success">Back to Collection</Button>
+          </div>
         </div>
       )
     }
