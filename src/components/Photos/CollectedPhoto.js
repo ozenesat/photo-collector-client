@@ -7,7 +7,7 @@ import { Redirect, Link } from 'react-router-dom'
 import axios from 'axios'
 import apiUrl from '../../apiConfig'
 import AutoDismissAlert from '../AutoDismissAlert/AutoDismissAlert'
-const CollectedPhoto = ({ title, photoId, photoUrl, photographer, portfolio, rating, comment, user, id }) => {
+const CollectedPhoto = ({ title, photoUrl, photographer, portfolio, rating, comment, user, id }) => {
   const [deleted, setDeleted] = useState(false)
 
   const destroy = () => {

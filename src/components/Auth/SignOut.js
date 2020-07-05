@@ -8,17 +8,17 @@ const SignOut = (props) => {
   const [cookies, setCookie] = useCookies(['user'])
   const msgAlert = props.msgAlert
   // const history = props.history
-  const clearUser = props.clearUser
+  // const clearUser = props.clearUser
   const user = props.user
   console.log(cookies) // find a way to get rid of it!
   signOut(user)
     .finally(() => msgAlert({
       heading: 'Signed Out Successfully',
-      messagE: messages.signOutSuccess,
+      message: messages.signOutSuccess,
       variant: 'primary'
     }))
     .finally(() => setCookie('user', ''))
-    .finally(() => clearUser())
+    // .finally(() => clearUser())
     // .finally(() => history.push('/welcome'))
   return ''
 }
