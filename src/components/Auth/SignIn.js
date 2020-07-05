@@ -37,7 +37,7 @@ const SignIn = (props) => {
         message: messages.signInSuccess,
         variant: 'primary'
       }))
-      .then(() => history.push('/welcome'))
+      .then(() => history.push('/home'))
       .catch(error => {
         setEmail('')
         setPassword('')
