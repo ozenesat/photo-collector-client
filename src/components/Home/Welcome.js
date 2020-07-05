@@ -17,7 +17,7 @@ const Welcome = () => {
       can always edit or delete the items anytime you want. Come discover this website if you want to see
       some spectacular photos and meet the talented people who took them!
             <br/> by <br/>
-            <a target="_blank" rel="noopener noreferrer" href="https://www.linkedin.com/in/ozenesat/" style={{ color: 'white', fontWeight: 'bold' }}>M.Esat OZEN</a>
+            <a target="_blank" rel="noopener noreferrer" href="https://www.linkedin.com/in/ozenesat/" style={{ color: 'white', fontWeight: 'bold', textDecoration: 'underline' }}>M.Esat OZEN</a>
           </Card.Text>
         </div>
       </Card.ImgOverlay>
