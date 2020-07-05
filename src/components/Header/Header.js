@@ -31,7 +31,7 @@ const Header = ({ user }) => {
     <Fragment>
       <Nav.Link href="#home">Home</Nav.Link>
       <Nav.Link href="#photos">My Photo Collection</Nav.Link>
-      <NavDropdown title="Search" id="nav-dropdown">
+      <NavDropdown title="Search Base" id="nav-dropdown">
         <Nav.Link href="#search">Search Photos</Nav.Link>
         <Nav.Link href="#collections">Search Collections</Nav.Link>
       </NavDropdown>
