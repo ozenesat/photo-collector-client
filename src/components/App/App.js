@@ -7,7 +7,7 @@ import Home from '../Home/Home'
 import Welcome from '../Home/Welcome'
 import SignUp from '../Auth/SignUp'
 import SignIn from '../Auth/SignIn'
-import SignOut from '../Auth/SignOut'
+// import SignOut from '../Auth/SignOut'
 import ChangePassword from '../Auth/ChangePassword'
 import Search from '../Photos/Search'
 import SearchCollections from '../Photos/SearchCollections'
@@ -21,7 +21,7 @@ const App = (props) => {
   const [user, setUser] = useState('')
   const [msgAlerts, setMsgAlerts] = useState([])
   const history = props.history
-  const clearUser = () => setUser(null)
+  // const clearUser = () => setUser(null)
   useEffect(() => {
     setUser(cookies.get('user'))
   }, [props.allCookies.user])
@@ -66,17 +66,14 @@ const App = (props) => {
         <AuthenticatedRoute user={user} exact path='/photos' render={() => (
           <Photos msgAlert={msgAlert} user={user} />
         )} />
-        <Route user={user} exact path='/photos/:id' render={() => (
+        <AuthenticatedRoute user={user} exact path='/photos/:id' render={() => (
           <PhotoShow msgAlert={msgAlert} user={user} />
         )} />
-        <Route user={user} exact path='/photos/:id/edit' render={() => (
+        <AuthenticatedRoute user={user} exact path='/photos/:id/edit' render={() => (
           <PhotoUpdate msgAlert={msgAlert} user={user} />
         )} />
         <AuthenticatedRoute user={user} path='/change-password' render={() => (
           <ChangePassword msgAlert={msgAlert} user={user} />
-        )} />
-        <AuthenticatedRoute path='/sign-out' user={user} render={() => (
-          <SignOut msgAlert={msgAlert} clearUser={clearUser} user={user} />
         )} />
       </main>
     </Fragment>

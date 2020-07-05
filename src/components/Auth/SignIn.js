@@ -27,10 +27,10 @@ const SignIn = (props) => {
   const onSignIn = event => {
     event.preventDefault()
     signIn(email, password)
-      .then(res => {
-        setUser(res.data.user)
-        setCookie('user', res.data.user)
-        console.log(cookies) // find a way to get rid of it!
+      .then(res => setCookie('user', res.data.user))
+      .then(() => {
+        // console.log(cookies, 'cook')
+        setUser(cookies.user)
       })
       .then(() => msgAlert({
         heading: 'Sign In Success',
