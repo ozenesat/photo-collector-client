@@ -126,7 +126,6 @@ const Search = props => {
           user={user}
         />
       </div>
-
     )
   }
 

@@ -1,4 +1,5 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
+import { withRouter } from 'react-router-dom'
 import Carousel from 'react-bootstrap/Carousel'
 import axios from 'axios'
 import apiUrl from '../../apiConfig'
@@ -8,12 +9,27 @@ import logo from './01.gif'
 // Home page for signed-in users with random photos which they can collect
 const Home = (props) => {
   const user = props.user
+  const history = props.history
   const [photos, setPhotos] = useState(null)
   const [controller, setController] = useState(false)
   const [collected0, setCollected0] = useState(false)
   const [collected1, setCollected1] = useState(false)
   const [collected2, setCollected2] = useState(false)
+  const signIn = () => {
+    history.push('/sign-in')
+  }
 
+  useEffect(() => {
+    axios({
+      url: `${apiUrl}/random-home`,
+      method: 'GET'
+    })
+      .then(res => {
+        setPhotos(res.data.photos)
+        setController(true)
+      })
+      .catch(console.error)
+  }, [])
   const handleClick0 = event => {
     event.preventDefault()
     setCollected0(true)
@@ -85,17 +101,17 @@ const Home = (props) => {
     )
   }
 
-  if (!controller) {
-    axios({
-      url: `${apiUrl}/random-home`,
-      method: 'GET'
-    })
-      .then(res => {
-        setPhotos(res.data.photos)
-        setController(true)
-      })
-      .catch(console.error)
-  }
+  // if (!controller) {
+  //   axios({
+  //     url: `${apiUrl}/random-home`,
+  //     method: 'GET'
+  //   })
+  //     .then(res => {
+  //       setPhotos(res.data.photos)
+  //       setController(true)
+  //     })
+  //     .catch(console.error)
+  // }
 
   if (controller && user) {
     const photosJsx = (
@@ -161,7 +177,7 @@ const Home = (props) => {
             alt="First slide"
           />
           <Carousel.Caption style={{ fontSize: '1.5em', fontFamily: 'Times New Roman', textAlign: 'center', background: 'rgba(4,9,23,0.5) ', color: 'white' }}>
-            <h3>A Photo by {photos[0].user.name}. Sign in to add it in your collection</h3>
+            <h3 type="submit" onClick={signIn}>A Photo by {photos[0].user.name}. Sign in to add it in your collection</h3>
             <h4>{photos[0].alt_description}</h4>
           </Carousel.Caption>
         </Carousel.Item>
@@ -175,7 +191,7 @@ const Home = (props) => {
             alt="Second slide"
           />
           <Carousel.Caption style={{ fontSize: '1.5em', fontFamily: 'Times New Roman', textAlign: 'center', background: 'rgba(4,9,23,0.5) ', color: 'white' }}>
-            <h3>A Photo by {photos[1].user.name}. Sign in to add it in your collection</h3>
+            <h3 type="submit" onClick={signIn}>A Photo by {photos[1].user.name}. Sign in to add it in your collection</h3>
             <h4>{photos[1].alt_description}</h4>
           </Carousel.Caption>
         </Carousel.Item>
@@ -190,7 +206,7 @@ const Home = (props) => {
           />
 
           <Carousel.Caption style={{ fontSize: '1.5em', fontFamily: 'Times New Roman', textAlign: 'center', background: 'rgba(4,9,23,0.5) ', color: 'white' }}>
-            <h3>A Photo by {photos[2].user.name}. Sign in to add it in your collection</h3>
+            <h3 type="submit" onClick={signIn}>A Photo by {photos[2].user.name}.Sign in to add it in your collection</h3>
             <h4>{photos[2].alt_description}</h4>
           </Carousel.Caption>
         </Carousel.Item>
@@ -209,4 +225,4 @@ const Home = (props) => {
   )
 }
 
-export default Home
+export default withRouter(Home)
