@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { withRouter } from 'react-router-dom'
-
+import { useAuth0 } from '@auth0/auth0-react'
 import { signIn } from '../../api/auth'
 import messages from '../AutoDismissAlert/messages'
 import { useCookies } from 'react-cookie'
@@ -49,6 +49,8 @@ const SignIn = (props) => {
       })
   }
 
+  const { loginWithRedirect } = useAuth0()
+
   return (
     <div className="row" style={{ marginTop: '2em', padding: '1em', textAlign: 'center' }}>
       <div className="col-sm-3 col-md-4 col mx-auto mt-5">
@@ -82,6 +84,7 @@ const SignIn = (props) => {
           >
               Submit
           </Button>
+          <button onClick={loginWithRedirect}>Log In</button>
         </Form>
       </div>
     </div>
