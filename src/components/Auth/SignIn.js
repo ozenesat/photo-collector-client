@@ -1,11 +1,54 @@
 import React, { useState } from 'react'
 import { withRouter } from 'react-router-dom'
-import { useAuth0 } from '@auth0/auth0-react'
+
 import { signIn } from '../../api/auth'
 import messages from '../AutoDismissAlert/messages'
 import { useCookies } from 'react-cookie'
 import Form from 'react-bootstrap/Form'
 import Button from 'react-bootstrap/Button'
+// Social Login imports
+import { useAuth0 } from '@auth0/auth0-react'
+import { useApi } from './use-api'
+
+export const Profile = () => {
+  console.log('profile!')
+  const domain = 'dev-44e3kccw.us.auth0.com'
+  const opts = {
+    audience: `https://${domain}/api/v2`,
+    scope: 'read:users'
+  }
+  const { login, getTokenWithPopup } = useAuth0()
+  const { loading, error, refresh, data: users } = useApi(
+    // https://mysterious-escarpment-32571.herokuapp.com
+    'https://mysterious-escarpment-32571.herokuapp.com',
+    opts
+  )
+  const getTokenAndTryAgain = async () => {
+    await getTokenWithPopup(opts)
+    refresh()
+  }
+  if (loading) {
+    return <div>Loading...</div>
+  }
+  if (error) {
+    if (error.error === 'login_required') {
+      return <button onClick={() => login(opts)}>Login</button>
+    }
+    if (error.error === 'consent_required') {
+      return (
+        <button onClick={getTokenAndTryAgain}>Consent to reading users</button>
+      )
+    }
+    return <div>Oops {error.message}</div>
+  }
+  return (
+    <ul>
+      {users.map((user, index) => {
+        return <li key={index}>{user}</li>
+      })}
+    </ul>
+  )
+}
 
 const SignIn = (props) => {
   const [email, setEmail] = useState('')
@@ -49,6 +92,7 @@ const SignIn = (props) => {
       })
   }
 
+  // Social Login with Auth0Provider
   const { loginWithRedirect } = useAuth0()
 
   return (

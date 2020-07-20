@@ -15,6 +15,8 @@ const appJsx = (
         domain="dev-44e3kccw.us.auth0.com"
         clientId="0ZhZVDOi16mCt7KwV9eY69KjOHbtts2Q"
         redirectUri={window.location.origin}
+        audience="https://dev-44e3kccw.us.auth0.com/api/v2/"
+        scope="read:current_user update:current_user_metadata"
       >
         <App />
       </Auth0Provider>
