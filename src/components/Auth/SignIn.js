@@ -6,6 +6,7 @@ import messages from '../AutoDismissAlert/messages'
 import { useCookies } from 'react-cookie'
 import Form from 'react-bootstrap/Form'
 import Button from 'react-bootstrap/Button'
+import GoogleLogin from 'react-google-login'
 
 const SignIn = (props) => {
   const [email, setEmail] = useState('')
@@ -49,6 +50,9 @@ const SignIn = (props) => {
       })
   }
 
+  const responseGoogle = (response) => {
+    console.log(response)
+  }
   return (
     <div className="row" style={{ marginTop: '2em', padding: '1em', textAlign: 'center' }}>
       <div className="col-sm-3 col-md-4 col mx-auto mt-5">
@@ -82,6 +86,24 @@ const SignIn = (props) => {
           >
               Submit
           </Button>
+          <GoogleLogin
+            clientId="298833457462-vdgqqdgkfahbengirfhpsb61vjeohouu.apps.googleusercontent.com"
+            render={renderProps => (
+              <Button
+                onClick={renderProps.onClick}
+                disabled={renderProps.disabled}
+                variant="outline-info"
+                type="submit"
+              >
+                <span>Google</span>
+              </Button>
+            )}
+            buttonText="Login"
+            onSuccess={responseGoogle}
+            onFailure={responseGoogle}
+            isSignedIn={true}
+            cookiePolicy={'single_host_origin'}
+          />
         </Form>
       </div>
     </div>
