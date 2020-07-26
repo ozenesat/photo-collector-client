@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { withRouter } from 'react-router-dom'
 
-import { signIn } from '../../api/auth'
+import { signIn, signUp } from '../../api/auth'
 import messages from '../AutoDismissAlert/messages'
 import { useCookies } from 'react-cookie'
 import Form from 'react-bootstrap/Form'
@@ -30,7 +30,6 @@ const SignIn = (props) => {
     signIn(email, password)
       .then(res => setCookie('user', res.data.user))
       .then(() => {
-        // console.log(cookies, 'cook')
         setUser(cookies.user)
       })
       .then(() => msgAlert({
@@ -52,6 +51,53 @@ const SignIn = (props) => {
 
   const responseGoogle = (response) => {
     console.log(response)
+    const gmail = response.Ot.yu
+    const gId = response.googleId
+    signUp(gmail, gId, gId)
+      .then(() => {
+        signIn(gmail, gId)
+          .then(res => setCookie('user', res.data.user))
+          .then(() => {
+            setUser(cookies.user)
+          })
+          .then(() => msgAlert({
+            heading: 'Sign In Success',
+            message: messages.signInSuccess,
+            variant: 'primary'
+          }))
+          .then(() => history.push('/home'))
+          .catch(error => {
+            setEmail('')
+            setPassword('')
+            msgAlert({
+              heading: 'Sign In Failed with error: ' + error.message,
+              message: messages.signInFailure,
+              variant: 'danger'
+            })
+          })
+      })
+      .catch(() => {
+        signIn(gmail, gId)
+          .then(res => setCookie('user', res.data.user))
+          .then(() => {
+            setUser(cookies.user)
+          })
+          .then(() => msgAlert({
+            heading: 'Sign In Success',
+            message: messages.signInSuccess,
+            variant: 'primary'
+          }))
+          .then(() => history.push('/home'))
+          .catch(error => {
+            setEmail('')
+            setPassword('')
+            msgAlert({
+              heading: 'Sign In Failed with error: ' + error.message,
+              message: messages.signInFailure,
+              variant: 'danger'
+            })
+          })
+      })
   }
   return (
     <div className="row" style={{ marginTop: '2em', padding: '1em', textAlign: 'center' }}>
@@ -83,28 +129,18 @@ const SignIn = (props) => {
           <Button
             variant="outline-info"
             type="submit"
+            style={{ marginBottom: '1em' }}
           >
               Submit
           </Button>
-          <GoogleLogin
-            clientId="298833457462-vdgqqdgkfahbengirfhpsb61vjeohouu.apps.googleusercontent.com"
-            render={renderProps => (
-              <Button
-                onClick={renderProps.onClick}
-                disabled={renderProps.disabled}
-                variant="outline-info"
-                type="submit"
-              >
-                <span>Google</span>
-              </Button>
-            )}
-            buttonText="Login"
-            onSuccess={responseGoogle}
-            onFailure={responseGoogle}
-            isSignedIn={true}
-            cookiePolicy={'single_host_origin'}
-          />
         </Form>
+        <GoogleLogin
+          clientId="298833457462-vdgqqdgkfahbengirfhpsb61vjeohouu.apps.googleusercontent.com"
+          buttonText="Sign In"
+          onSuccess={responseGoogle}
+          onFailure={responseGoogle}
+          cookiePolicy={'single_host_origin'}
+        />
       </div>
     </div>
   )
