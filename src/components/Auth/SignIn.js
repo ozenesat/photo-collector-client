@@ -7,8 +7,10 @@ import { useCookies } from 'react-cookie'
 import Form from 'react-bootstrap/Form'
 import Button from 'react-bootstrap/Button'
 import GoogleLogin from 'react-google-login'
+import logo from '../Home/01.gif'
 
 const SignIn = (props) => {
+  const [loading, setLoading] = useState(false)
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
   const [cookies, setCookie] = useCookies(['user'])
@@ -27,6 +29,7 @@ const SignIn = (props) => {
 
   const onSignIn = event => {
     event.preventDefault()
+    setLoading(true)
     signIn(email, password)
       .then(res => setCookie('user', res.data.user))
       .then(() => {
@@ -41,6 +44,7 @@ const SignIn = (props) => {
       .catch(error => {
         setEmail('')
         setPassword('')
+        setLoading(false)
         msgAlert({
           heading: 'Sign In Failed with error: ' + error.message,
           message: messages.signInFailure,
@@ -50,7 +54,8 @@ const SignIn = (props) => {
   }
 
   const responseGoogle = (response) => {
-    console.log(response)
+    // console.log(response)
+    setLoading(true)
     const gmail = response.Ot.yu
     const gId = response.googleId
     signUp(gmail, gId, gId)
@@ -69,6 +74,7 @@ const SignIn = (props) => {
           .catch(error => {
             setEmail('')
             setPassword('')
+            setLoading(false)
             msgAlert({
               heading: 'Sign In Failed with error: ' + error.message,
               message: messages.signInFailure,
@@ -91,6 +97,7 @@ const SignIn = (props) => {
           .catch(error => {
             setEmail('')
             setPassword('')
+            setLoading(false)
             msgAlert({
               heading: 'Sign In Failed with error: ' + error.message,
               message: messages.signInFailure,
@@ -141,6 +148,7 @@ const SignIn = (props) => {
           onFailure={responseGoogle}
           cookiePolicy={'single_host_origin'}
         />
+        {loading && <img src={logo}/>}
       </div>
     </div>
   )

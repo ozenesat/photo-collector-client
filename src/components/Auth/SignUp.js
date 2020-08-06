@@ -6,10 +6,11 @@ import messages from '../AutoDismissAlert/messages'
 import { useCookies } from 'react-cookie'
 import Form from 'react-bootstrap/Form'
 import Button from 'react-bootstrap/Button'
-
+import logo from '../Home/01.gif'
 import GoogleLogin from 'react-google-login'
 
 const SignUp = (props) => {
+  const [loading, setLoading] = useState(false)
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
   const [passwordConfirmation, setPassConf] = useState('')
@@ -35,13 +36,12 @@ const SignUp = (props) => {
 
   const onSignUp = event => {
     event.preventDefault()
-
+    setLoading(true)
     signUp(email, password, passwordConfirmation)
       .then(() => signIn(email, password))
       .then(res => {
         setUser(res.data.user)
         setCookie('user', res.data.user)
-        console.log(cookies) // find a way to get rid of it!
       })
       .then(() => msgAlert({
         heading: 'Sign Up Success',
@@ -53,6 +53,7 @@ const SignUp = (props) => {
         setEmail('')
         setPassword('')
         setPassConf('')
+        setLoading(false)
         msgAlert({
           heading: 'Sign Up Failed with error: ' + error.message,
           message: messages.signUpFailure,
@@ -62,6 +63,7 @@ const SignUp = (props) => {
   }
 
   const responseGoogle = (response) => {
+    setLoading(true)
     const gmail = response.Ot.yu
     const gId = response.googleId
     signUp(gmail, gId, gId)
@@ -80,6 +82,8 @@ const SignUp = (props) => {
           .catch(error => {
             setEmail('')
             setPassword('')
+            setPassConf('')
+            setLoading(false)
             msgAlert({
               heading: 'Sign In Failed with error: ' + error.message,
               message: messages.signInFailure,
@@ -102,6 +106,8 @@ const SignUp = (props) => {
           .catch(error => {
             setEmail('')
             setPassword('')
+            setPassConf('')
+            setLoading(false)
             msgAlert({
               heading: 'Sign In Failed with error: ' + error.message,
               message: messages.signInFailure,
@@ -164,6 +170,7 @@ const SignUp = (props) => {
           onFailure={responseGoogle}
           cookiePolicy={'single_host_origin'}
         />
+        {loading && <img src={logo}/>}
       </div>
     </div>
   )
