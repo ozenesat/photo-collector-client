@@ -116,62 +116,71 @@ const SignUp = (props) => {
           })
       })
   }
-
+  const formJsx = (
+    <div className="col-sm-3 col-md-4 col mx-auto mt-5">
+      <h3 style={{ marginBottom: '1em' }}>Sign Up</h3>
+      <Form onSubmit={onSignUp}>
+        <Form.Group controlId="email">
+          <Form.Label>Email:</Form.Label>
+          <Form.Control style={{ textAlign: 'center' }}
+            required
+            type="email"
+            name="email"
+            value={email}
+            placeholder="Enter email"
+            onChange={handleEmail}
+          />
+        </Form.Group>
+        <Form.Group controlId="password">
+          <Form.Label>Password:</Form.Label>
+          <Form.Control style={{ textAlign: 'center' }}
+            required
+            name="password"
+            value={password}
+            type="password"
+            placeholder="Password"
+            onChange={handlePassword}
+          />
+        </Form.Group>
+        <Form.Group controlId="passwordConfirmation">
+          <Form.Label>Confirmation:</Form.Label>
+          <Form.Control style={{ textAlign: 'center' }}
+            required
+            name="passwordConfirmation"
+            value={passwordConfirmation}
+            type="password"
+            placeholder="Confirm Password"
+            onChange={handlePassConf}
+          />
+        </Form.Group>
+        <Button
+          variant="outline-info"
+          type="submit"
+          style={{ marginBottom: '1em' }}
+        >
+            Submit
+        </Button>
+      </Form>
+      <GoogleLogin
+        clientId="298833457462-vdgqqdgkfahbengirfhpsb61vjeohouu.apps.googleusercontent.com"
+        buttonText="Sign Up"
+        onSuccess={responseGoogle}
+        onFailure={responseGoogle}
+        cookiePolicy={'single_host_origin'}
+      />
+    </div>
+  )
+  if (loading) {
+    return (
+      <div style={{ marginTop: '4em', padding: '1em', textAlign: 'center' }}>
+        <h1> Welcome to Photo Collector!</h1>
+        <img src={logo}/>
+      </div>
+    )
+  }
   return (
     <div className="row" style={{ marginTop: '2em', padding: '1em', textAlign: 'center' }}>
-      <div className="col-sm-3 col-md-4 col mx-auto mt-5">
-        <h3 style={{ marginBottom: '1em' }}>Sign Up</h3>
-        <Form onSubmit={onSignUp}>
-          <Form.Group controlId="email">
-            <Form.Label>Email:</Form.Label>
-            <Form.Control style={{ textAlign: 'center' }}
-              required
-              type="email"
-              name="email"
-              value={email}
-              placeholder="Enter email"
-              onChange={handleEmail}
-            />
-          </Form.Group>
-          <Form.Group controlId="password">
-            <Form.Label>Password:</Form.Label>
-            <Form.Control style={{ textAlign: 'center' }}
-              required
-              name="password"
-              value={password}
-              type="password"
-              placeholder="Password"
-              onChange={handlePassword}
-            />
-          </Form.Group>
-          <Form.Group controlId="passwordConfirmation">
-            <Form.Label>Confirmation:</Form.Label>
-            <Form.Control style={{ textAlign: 'center' }}
-              required
-              name="passwordConfirmation"
-              value={passwordConfirmation}
-              type="password"
-              placeholder="Confirm Password"
-              onChange={handlePassConf}
-            />
-          </Form.Group>
-          <Button
-            variant="outline-info"
-            type="submit"
-            style={{ marginBottom: '1em' }}
-          >
-              Submit
-          </Button>
-        </Form>
-        <GoogleLogin
-          clientId="298833457462-vdgqqdgkfahbengirfhpsb61vjeohouu.apps.googleusercontent.com"
-          buttonText="Sign Up"
-          onSuccess={responseGoogle}
-          onFailure={responseGoogle}
-          cookiePolicy={'single_host_origin'}
-        />
-        {loading && <img src={logo}/>}
-      </div>
+      {formJsx}
     </div>
   )
 }
