@@ -52,7 +52,7 @@ const Photos = props => {
       .catch(error => {
         setKeyword('')
         msgAlert({
-          heading: 'Failed on listing',
+          heading: 'Failed. You may need to sign-in again.',
           message: error.message,
           variant: 'danger'
         })

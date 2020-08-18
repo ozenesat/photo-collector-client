@@ -18,13 +18,15 @@ import { withCookies } from 'react-cookie'
 
 const App = (props) => {
   const { cookies } = props
-  const [user, setUser] = useState('')
+  const [user, setUser] = useState(cookies.get('user'))
   const [msgAlerts, setMsgAlerts] = useState([])
   const history = props.history
   // const clearUser = () => setUser(null)
+
   useEffect(() => {
     setUser(cookies.get('user'))
   }, [props.allCookies.user])
+
   const msgAlert = ({ heading, message, variant }) => {
     setMsgAlerts([...msgAlerts, { heading, message, variant }])
   }

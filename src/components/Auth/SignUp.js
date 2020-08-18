@@ -41,7 +41,7 @@ const SignUp = (props) => {
       .then(() => signIn(email, password))
       .then(res => {
         setUser(res.data.user)
-        setCookie('user', res.data.user)
+        setCookie('user', res.data.user, { maxAge: 172800 })
       })
       .then(() => msgAlert({
         heading: 'Sign Up Success',

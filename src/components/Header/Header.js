@@ -12,10 +12,10 @@ import { signOut } from '../../api/auth'
 
 const Header = ({ user }) => {
   const [cookies, setCookie] = useCookies(['user'])
-
   const handleSignOut = () => {
     signOut(cookies.user)
       .then(() => setCookie('user', ''))
+      .catch(() => setCookie('user', ''))
     return (
       <div>
         <AutoDismissAlert

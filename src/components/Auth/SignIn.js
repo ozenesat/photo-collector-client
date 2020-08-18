@@ -31,7 +31,9 @@ const SignIn = (props) => {
     event.preventDefault()
     setLoading(true)
     signIn(email, password)
-      .then(res => setCookie('user', res.data.user))
+      .then(res => {
+        setCookie('user', res.data.user)
+      })
       .then(() => {
         setUser(cookies.user)
       })
@@ -52,18 +54,16 @@ const SignIn = (props) => {
         })
       })
   }
-
   const responseGoogle = (response) => {
-    // console.log(response)
     setLoading(true)
     const gmail = response.Ot.yu
     const gId = response.googleId
     signUp(gmail, gId, gId)
       .then(() => {
         signIn(gmail, gId)
-          .then(res => setCookie('user', res.data.user))
-          .then(() => {
-            setUser(cookies.user)
+          .then(res => {
+            setCookie('user', res.data.user, { maxAge: 172800 })
+            setUser(res.data.user)
           })
           .then(() => msgAlert({
             heading: 'Sign In Success',
