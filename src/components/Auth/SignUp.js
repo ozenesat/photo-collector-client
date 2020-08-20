@@ -63,7 +63,10 @@ const SignUp = (props) => {
   }
 
   const responseGoogle = (response) => {
-    if (response.profileObj.email) {
+    if (response.error) {
+      setLoading(false)
+      alert('There was an error while signing in with Google, please try again.')
+    } else {
       setLoading(true)
       const gmail = response.profileObj.email
       const gId = response.googleId
@@ -116,9 +119,6 @@ const SignUp = (props) => {
               })
             })
         })
-    } else {
-      setLoading(false)
-      alert('There was an error while singing up with Google, please try again.')
     }
   }
   const formJsx = (

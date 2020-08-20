@@ -55,7 +55,6 @@ const SignIn = (props) => {
       })
   }
   const responseGoogle = (response) => {
-    console.log(response, 'Hiol')
     if (response.error) {
       setLoading(false)
       alert('There was an error while signing in with Google, please try again.')
@@ -111,10 +110,6 @@ const SignIn = (props) => {
             })
         })
     }
-    // else {
-    //   setLoading(false)
-    //   alert('There was an error while signing in with Google, please try again.')
-    // }
   }
   const formJsx = (
     <div className="col-sm-3 col-md-4 col mx-auto mt-5">
