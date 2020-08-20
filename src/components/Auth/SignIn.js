@@ -55,56 +55,66 @@ const SignIn = (props) => {
       })
   }
   const responseGoogle = (response) => {
-    setLoading(true)
-    const gmail = response.profileObj.email
-    const gId = response.googleId
-    signUp(gmail, gId, gId)
-      .then(() => {
-        signIn(gmail, gId)
-          .then(res => {
-            setCookie('user', res.data.user, { maxAge: 172800 })
-            setUser(res.data.user)
-          })
-          .then(() => msgAlert({
-            heading: 'Sign In Success',
-            message: messages.signInSuccess,
-            variant: 'primary'
-          }))
-          .then(() => history.push('/home'))
-          .catch(error => {
-            setEmail('')
-            setPassword('')
-            setLoading(false)
-            msgAlert({
-              heading: 'Sign In Failed with error: ' + error.message,
-              message: messages.signInFailure,
-              variant: 'danger'
+    console.log(response, 'Hiol')
+    if (response.error) {
+      setLoading(false)
+      alert('There was an error while signing in with Google, please try again.')
+    } else {
+      setLoading(true)
+      const gmail = response.profileObj.email
+      const gId = response.googleId
+      signUp(gmail, gId, gId)
+        .then(() => {
+          signIn(gmail, gId)
+            .then(res => {
+              setCookie('user', res.data.user, { maxAge: 172800 })
+              setUser(res.data.user)
             })
-          })
-      })
-      .catch(() => {
-        signIn(gmail, gId)
-          .then(res => setCookie('user', res.data.user))
-          .then(() => {
-            setUser(cookies.user)
-          })
-          .then(() => msgAlert({
-            heading: 'Sign In Success',
-            message: messages.signInSuccess,
-            variant: 'primary'
-          }))
-          .then(() => history.push('/home'))
-          .catch(error => {
-            setEmail('')
-            setPassword('')
-            setLoading(false)
-            msgAlert({
-              heading: 'Sign In Failed with error: ' + error.message,
-              message: messages.signInFailure,
-              variant: 'danger'
+            .then(() => msgAlert({
+              heading: 'Sign In Success',
+              message: messages.signInSuccess,
+              variant: 'primary'
+            }))
+            .then(() => history.push('/home'))
+            .catch(error => {
+              setEmail('')
+              setPassword('')
+              setLoading(false)
+              msgAlert({
+                heading: 'Sign In Failed with error: ' + error.message,
+                message: messages.signInFailure,
+                variant: 'danger'
+              })
             })
-          })
-      })
+        })
+        .catch(() => {
+          signIn(gmail, gId)
+            .then(res => setCookie('user', res.data.user))
+            .then(() => {
+              setUser(cookies.user)
+            })
+            .then(() => msgAlert({
+              heading: 'Sign In Success',
+              message: messages.signInSuccess,
+              variant: 'primary'
+            }))
+            .then(() => history.push('/home'))
+            .catch(error => {
+              setEmail('')
+              setPassword('')
+              setLoading(false)
+              msgAlert({
+                heading: 'Sign In Failed with error: ' + error.message,
+                message: messages.signInFailure,
+                variant: 'danger'
+              })
+            })
+        })
+    }
+    // else {
+    //   setLoading(false)
+    //   alert('There was an error while signing in with Google, please try again.')
+    // }
   }
   const formJsx = (
     <div className="col-sm-3 col-md-4 col mx-auto mt-5">
