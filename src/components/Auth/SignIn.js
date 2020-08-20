@@ -56,7 +56,7 @@ const SignIn = (props) => {
   }
   const responseGoogle = (response) => {
     setLoading(true)
-    const gmail = response.Ot.yu
+    const gmail = response.profileObj.email
     const gId = response.googleId
     signUp(gmail, gId, gId)
       .then(() => {
