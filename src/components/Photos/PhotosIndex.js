@@ -79,28 +79,37 @@ const Photos = props => {
     </div>
   )
   if (photos && !searched) {
-    userPhotos = photos.filter(photo => photo.owner === id)
-    const photosJsx = userPhotos.map(photo => (
-      <Fragment key={photo.photoId}>
-        <CollectedPhoto
-          title={photo.title}
-          photoId={photo.photoId}
-          photoUrl= {photo.photoUrl}
-          photographer={photo.photographer}
-          portfolio={photo.portfolio}
-          rating= {photo.rating}
-          comment= {photo.comment}
-          user={user}
-          id={photo._id}
-        />
-      </Fragment>
-    ))
-    return (
-      <div>
-        {searchBarJsx}
-        {photosJsx}
-      </div>
-    )
+    if (photos.length === 0) {
+      return (
+        <div style={{ textAlign: 'center', margin: '0.75em' }}>
+          {searchBarJsx}
+          <h5> You didn`t collect any photos yet. Go to the Search Base to collect new photos!</h5>
+        </div>
+      )
+    } else {
+      userPhotos = photos.filter(photo => photo.owner === id)
+      const photosJsx = userPhotos.map(photo => (
+        <Fragment key={photo.photoId}>
+          <CollectedPhoto
+            title={photo.title}
+            photoId={photo.photoId}
+            photoUrl= {photo.photoUrl}
+            photographer={photo.photographer}
+            portfolio={photo.portfolio}
+            rating= {photo.rating}
+            comment= {photo.comment}
+            user={user}
+            id={photo._id}
+          />
+        </Fragment>
+      ))
+      return (
+        <div>
+          {searchBarJsx}
+          {photosJsx}
+        </div>
+      )
+    }
   }
 
   if (searched) {
