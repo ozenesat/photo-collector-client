@@ -101,18 +101,6 @@ const Home = (props) => {
     )
   }
 
-  // if (!controller) {
-  //   axios({
-  //     url: `${apiUrl}/random-home`,
-  //     method: 'GET'
-  //   })
-  //     .then(res => {
-  //       setPhotos(res.data.photos)
-  //       setController(true)
-  //     })
-  //     .catch(console.error)
-  // }
-
   if (controller && user) {
     const photosJsx = (
       <Carousel style={{ justifyContent: 'center', textAlign: 'center' }}>
