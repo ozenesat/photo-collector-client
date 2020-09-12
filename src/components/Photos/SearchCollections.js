@@ -69,7 +69,6 @@ const SearchCollections = props => {
       method: 'GET'
     })
       .then(res => {
-        console.log(res, 'random')
         setCollection(res.data.photos)
         setSearched(false)
       })

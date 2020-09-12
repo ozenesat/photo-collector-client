@@ -22,7 +22,6 @@ const Collection = ({ title, collectionId, coverPhotoUrl, description, collectio
       params: { collectionId }
     })
       .then(res => {
-        console.log(res, 'res')
         setPhotos(res.data.photos)
         setDiscoverd(true)
       })
